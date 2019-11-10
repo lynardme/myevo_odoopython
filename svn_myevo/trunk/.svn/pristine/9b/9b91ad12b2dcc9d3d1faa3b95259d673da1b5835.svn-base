@@ -1,0 +1,35 @@
+<openerp>
+	<data>
+		<!-- Main Menu Profile User -->
+		<record id="menu_profile_user" model="ir.ui.view">
+            <field name="name">menu.profile.user</field>
+            <field name="model">user.profile</field>
+            <field eval="18" name="priority"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+	            <form string="User Profile">
+	            	<group>
+	            		<field name="name" string="Name" readonly="1"/>
+	            		<field name="login" string="Email Address" readonly="1"/>
+	            	</group>
+					<footer>
+                		<button name="%(change_password_wizard_action)d" type="action" string="Change Password"/>
+						<!-- If soupese ready to use this feature, just delete invisibel="1" -->                		
+                		<button invisible="1" name="reset_password_email" type="object" string="Send Reset Password Instructions"/>
+                		<button string="Cancel" class="btn-default" special="cancel" />
+                	</footer>
+	            </form>
+            </field>
+    	</record>
+    	
+    	 <record id="action_menu_profile_user" model="ir.actions.act_window">
+            <field name="name">My Profile</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">user.profile</field>
+            <field name="target">new</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+        </record>
+			
+	</data>
+</openerp>

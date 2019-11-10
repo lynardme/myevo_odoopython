@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- EXEC BEFORE ANYTHING ELSE -->
+        <!--
+        <function model="soupese_base.clean_up" name="_clean_database"/>
+        -->
+
+    </data>
+</openerp>

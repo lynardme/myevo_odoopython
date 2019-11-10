@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<!-- Custom user groups -->
+
+		<record model="ir.module.category" id="module_category_po_field_access">
+			<field name="name">Soupese Access Right</field>
+			<field name="description">Purchase Order Access right</field>
+			<field name="sequence">100</field>
+		</record>
+
+		<record id="po_f_access_data_manager" model="res.groups">
+			<field name="name">Data Manager</field>
+			<field name="category_id" ref="module_category_po_field_access"/>
+		</record>
+		<!--
+		<record id="po_f_access_purchase_person" model="res.groups">
+			<field name="name">Purchase Person</field>
+			<field name="category_id" ref="module_category_po_field_access"/>
+		</record>
+		-->
+		<record id="po_f_access_user" model="res.groups">
+			<field name="name">User</field>
+			<field name="category_id" ref="module_category_po_field_access"/>
+		</record>
+
+		<!-- ================== -->
+
+
+		<record id="custom_res_partner_form" model="ir.ui.view">
+			<field name="name">res_partner_form</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='ref']" position="replace">
+					<field name="ref" string="Farm No."/>
+				</xpath>
+			</field>
+		</record>
+
+		<record id="custom_stock_picking_form" model="ir.ui.view">
+			<field name="name">custom_stock_picking_form</field>
+			<field name="model">stock.picking</field>
+			<field name="inherit_id" ref="stock.view_picking_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='min_date']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<xpath expr="/form/header/button[@name='do_new_transfer']" position="attributes">
+					<attribute name="groups">stock.group_stock_user,soupese_base.po_f_access_data_manager</attribute>
+				</xpath>
+<!--				<field name="partner_id" position="after">-->
+<!--	            	<field name="purch_id"/>-->
+<!--				</field>		-->
+			</field>
+		</record>
+
+		<record id="custom_stock_immediate_transfer_wizard" model="ir.ui.view">
+			<field name="name">custom.stock.immediate.transfer.wizard</field>
+			<field name="model">stock.immediate.transfer</field>
+			<field name="inherit_id" ref="stock.view_immediate_transfer"/>
+			<field name="arch" type="xml">
+				<xpath expr="//p" position="replace">
+					<p>
+                        You haven't set processed quantities. If you click <i>apply</i>,
+                        Soupese will process all quantities to do.
+                    </p>
+				</xpath>
+			</field>
+		</record>
+		<record id="custom_purchase_order_form" model="ir.ui.view">
+			<field name="name">custom_purchase_order_form</field>
+			<field name="model">purchase.order</field>
+			<field name="inherit_id" ref="purchase.purchase_order_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="/form/sheet/div[@class='oe_title']" position="before">
+					<div class="oe_title">
+						<label string="PDA ID" />
+						<h1>
+							<field name="pda_id" />
+						</h1>
+					</div>
+				</xpath>
+
+				<button  name="button_done" position="attributes">
+					<attribute name="string">Reviewed</attribute>
+				</button>
+				<xpath expr="/form/header/button[@name='action_rfq_send']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<xpath expr="/form/header/button[@name='action_view_picking']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<xpath expr="/form/header/button[@name='action_view_picking']" position="after">
+					<button name="print_do_report" string="Print DO Report" type="object" class="oe_highlight"
+					attrs="{'invisible':['|',('state','in',['draft', 'cancel', 'sent', 'to approve'])]}" />
+				</xpath>
+				<xpath expr="//field[@name='partner_id']" position="before">
+<!--					<field name="currency_id"/-->
+					<field name="off_feeding"/>
+					<field name="water_fogging"/>
+					<field name="catching_bill"/>
+				</xpath>
+				
+				<xpath expr="//field[@name='partner_ref']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<xpath expr="//field[@name='date_order']" position="replace">
+					<field name="confirm_date" readonly="False"/>
+					<field name="owners_id" attrs="{'invisible': True}"/>
+					<field name="scale_id"/>
+					<field name="lory_number"/>
+					<field name="pda_do_id" readonly="1" />
+				</xpath>
+
+				<!-- This fixed for 'Farm' field, if purchase_user then readonly the field -->
+				<!-- remove the current position for 'partner_id' -->
+				<xpath expr="//field[@name='partner_id']" position="replace"/>
+				<!-- position back before the 'scale_id' -->
+				<xpath expr="//field[@name='scale_id']" position="before">
+					<field name="partner_id"/>
+				</xpath>
+				<!-- changed the label to 'Farm' -->
+				<xpath expr="//field[@name='partner_id']" position="attributes">
+					<attribute name="string">Farm</attribute>
+				</xpath>
+
+				<xpath expr="//notebook" position="replace">
+<!--					<notebook>	-->
+<!--                        <page string="Products">-->
+							<field name="order_line">
+								<tree string="Purchase Order Lines" editable="top">
+                                    <field name="weighing_date"/>
+                                    <field name="product_id"/>
+                                    <field name="name" invisible="1"/>
+									<field name="crates" string="No. of Crates"/>
+									<field name="crates_weight"/>
+									<field name="crate_net"/>
+									<field name="buyer"/>
+									<field name="product_qty" invisible="1"/>
+									<field name="product_uom" groups="product.group_uom"/>
+								</tree>
+
+							</field>
+							<group class="oe_subtotal_footer oe_right">
+								<field name="total_crates"/>
+								<field name="total_male"/>
+								<field name="total_female"/>
+								<field name="total_apollo"/>
+								<field name="birdcrate_mix_total"/>
+								<field name="birdcrate_b_total"/>
+								<field name="birdcrate_c_total"/>
+								<field name="totalcover"/>
+								<field name="single_cover_weight"/>								
+								<field name="total_gw"/>
+								<field name="avg_cr_w"/>
+								<field name="total_cw"/>
+								<field name="avg_b_w"/>
+								<field name="total_nw"/>
+							</group>
+							<field name="notes" class="oe_inline" placeholder="An administrator can set up default Terms and conditions in your Company settings."/>
+							<h4>Other Comments</h4>
+							<field name="other_comment" class="oe_inline" readonly="0"/>
+							<div class="oe_clear"/>
+<!--                        </page>-->
+<!--                    </notebook>-->
+				</xpath>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="custom_purchase_order_pivot">
+            <field name="name">purchase.order.pivot</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_pivot"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='amount_total']" position="replace">
+                    <field name="total_nw" type="measure"/>
+                </xpath>
+            </field>
+        </record>
+
+		<record id="custom_purchase_order_tree" model="ir.ui.view">
+			<field name="name">custom_purchase_order_tree</field>
+			<field name="model">purchase.order</field>
+			<field name="inherit_id" ref="purchase.purchase_order_tree"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='partner_id']" position="replace">
+					<field name="farm_house_concat" string="Farm / House#"/>
+				</xpath>
+
+<!--
+				<xpath expr="//field[@name='date_planned']" position="replace">
+					<field name="date_planned" string="Date"/>
+				</xpath>
+ -->
+ <!-- Replaced with codes below -Togar -->
+				<xpath expr="//field[@name='date_planned']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+
+				<xpath expr="//field[@name='date_order']" position="replace">
+					<field name="confirm_date" string="Order Date"/>
+				</xpath>
+
+				<field name="amount_total" position="replace">
+					<field name="avg_b_w" />
+					<field name="total_nw" />
+				</field>
+
+				<xpath expr="//field[@name='origin']" position="replace">
+					<field name="origin" invisible="1"/>
+				</xpath>
+
+				<xpath expr="//field[@name='amount_untaxed']" position="before">
+					<field name="product"/>
+					<field name="breed"/>
+					<field name="age"/>
+				</xpath>
+
+				<xpath expr="//field[@name='amount_untaxed']" position="replace">
+				</xpath>
+
+			</field>
+		</record>
+
+		<!-- default to 'Purchase Orders' filter -->
+		<record id="purchase.purchase_form_action" model="ir.actions.act_window">
+			<field name="context">{'search_default_todo':1, 'show_purchase': True, 'search_default_approved':1}</field>
+		</record>
+
+		<record id="view_form_pda_id" model="ir.ui.view">
+			<field name="name">PDA ID Form</field>
+			<field name="model">pda.operation</field>
+			<field name="arch" type="xml">
+				<form string="PDA ID">
+					<sheet>
+						<group>
+							<group>
+								<field name="pda_id" string="ID" required="1"/>
+								<field name='lorry_id' string="Lorry"/>
+								<field name="name" string="Model"/>
+								<field name="installation" string="installation"/>
+								<field name="app_version"/>
+								<field name="lastest_sync" string="Last Sync"/>
+								<field name="full_sync" invisible="1"/>
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_tree_pda_id" model="ir.ui.view">
+			<field name="name">PDA ID Tree</field>
+			<field name="model">pda.operation</field>
+			<field name="arch" type="xml">
+				<tree string="PDA ID">
+					<field name="pda_id"/>
+					<field name="name"/>
+					<field name="installation"/>
+					<field name="app_version"/>
+					<field name="lastest_sync"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_form_lorry_number" model="ir.ui.view">
+			<field name="name">Lorry Number Form</field>
+			<field name="model">lorry.number</field>
+			<field name="arch" type="xml">
+				<form string="Lorry">
+					<sheet>
+						<group>
+							<group>
+								<field name="name"/>
+								<field name="owner_id" domain ="[('is_an_owner','=','True')]"/>
+								<field name="pda_ids" widget="many2many"/>
+									<!--field name="model"/>
+								</field-->
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_tree_lorry_number" model="ir.ui.view">
+			<field name="name">Lorry Number Tree</field>
+			<field name="model">lorry.number</field>
+			<field name="arch" type="xml">
+				<tree string="Lorry">
+					<field name="name"/>
+				</tree>
+			</field>
+		</record>
+
+
+		<!-- =================================== -->
+		<!-- Purchase Order - Custom Search view -->
+		<!-- =================================== -->
+		<record id="custom_view_purchase_order_filter" model="ir.ui.view">
+            <field name="name">custom.view.purchase.order.filter</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="arch" type="xml">
+            	<xpath expr="/search/group/filter[2]" position="replace">
+		          <filter string="Order date" name="confirm_date" domain="[]" context="{'group_by':'confirm_date'}"/>
+		        </xpath>
+		    </field>
+		</record>
+
+
+
+		<act_window id= "action_pda_id"
+		name= "PDA ID"
+		res_model= "pda.operation"
+		view_mode= "tree,form"/>
+
+		<menuitem id= "base.menu_pda_id"
+			name= "PDA ID"
+			parent= "purchase.menu_procurement_management"
+			sequence= "18"
+			groups= "soupese_base.po_f_access_data_manager,base.group_erp_manager"
+			action= "action_pda_id"
+		/>
+
+		<act_window id= "action_lorry_number"
+		name= "Lorry"
+		res_model= "lorry.number"
+		view_mode= "tree,form"/>
+
+		<menuitem
+			id="base.menu_lorry_number"
+			name="Lorry"
+			parent="purchase.menu_procurement_management"
+			action="action_lorry_number"
+			sequence="17"
+			groups= "soupese_base.po_f_access_data_manager,base.group_erp_manager"
+		/>
+
+
+		<!-- Hide purchase menu items by group -->
+
+		<menuitem action="purchase.purchase_rfq" id="purchase.menu_purchase_rfq"
+			parent="purchase.menu_procurement_management"
+			groups= "base.group_erp_manager"
+			sequence="0"
+		/>
+
+		<!-- Product menu-->
+		<menuitem
+			name="Products" id="purchase.menu_procurement_partner_contact_form"
+			action="purchase.product_normal_action_puchased"
+			parent="purchase.menu_procurement_management" sequence="20"
+			groups= "soupese_base.po_f_access_data_manager,base.group_erp_manager"
+		/>
+
+		<!-- Purchase Control Menu -->
+		<menuitem
+			id="base.menu_purchase_control" name="Control"
+			parent="base.menu_purchase_root"
+			sequence="4"
+			groups="base.group_erp_manager"
+		/>
+
+		<!--Inventory control-->
+		<menuitem
+			action="stock.action_receipt_picking_move"
+			id="purchase.menu_action_picking_tree_in_move"
+			parent="purchase.menu_purchase_control" sequence="11"
+			groups="base.group_erp_manager"
+		/>
+
+		<!--Invoice control-->
+		<menuitem
+			 id="purchase.menu_procurement_management_pending_invoice"
+			 action="purchase.action_invoice_pending"
+			 parent="purchase.menu_purchase_control"
+			 groups="base.group_erp_manager"
+			 sequence="13"
+		/>
+
+		<!-- Custom fields groups -->
+
+		<record model="ir.ui.view" id="purchase_order_fields_group_inherit_custom">
+			<field name="name">purchase.order.fields.group.inherit.custom</field>
+			<field name="model">purchase.order</field>
+			<field name="inherit_id" ref="custom_purchase_order_form"/>
+			<field name="groups_id" eval="[(6, 0, [ref('soupese_base.po_f_access_user')])]"/>
+			<field name="arch" type="xml">
+				<field name="pda_id" position="attributes">
+					<attribute name="readonly">1</attribute>
+				</field>
+				<field name="lory_number" position="attributes">
+					<attribute name="readonly">1</attribute>
+				</field>
+				<field name="scale_id" position="attributes">
+					<attribute name="readonly">1</attribute>
+				</field>
+			</field>
+		</record>
+
+
+	</data>
+</openerp>

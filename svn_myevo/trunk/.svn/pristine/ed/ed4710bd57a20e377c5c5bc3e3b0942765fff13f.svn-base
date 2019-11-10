@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="account_hide_email_button" model="ir.ui.view">
+			<field name="name">Hide Send by Email button on account module</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="account.invoice_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//form/header/button[1]" position="attributes">
+					<attribute name="invisible">1</attribute>
+					<attribute name="states" />
+				</xpath>
+				<xpath expr="//form/header/button[3]" position="attributes">
+					<attribute name="invisible">1</attribute>
+					<attribute name="states" />
+				</xpath>
+			</field>
+		</record>
+
+	</data>
+</openerp>

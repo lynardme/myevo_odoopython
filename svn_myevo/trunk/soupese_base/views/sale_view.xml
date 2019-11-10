@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<!--================================
+		=            Sale order            =
+		=================================-->
+		<record id="custom_sale_order_form" model="ir.ui.view">
+			<field name="name">custom.sale.order.form</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form"/>
+			<field name="mode">primary</field>
+			<field name="arch" type="xml">
+				<!-- hide fields, page, etc that are not used -->
+				<xpath expr="//field[@name='validity_date']" position="replace">
+					<field name="purchase_id"/>
+				</xpath>
+				<xpath expr="//field[@name='payment_term_id']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<xpath expr="//form/sheet/notebook/page[2]" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<xpath expr="//field[@name='amount_untaxed']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<xpath expr="//field[@name='amount_tax']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<xpath expr="//group[@name='sale_total']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<!-- order_line page -->
+				<xpath expr="//form/sheet/notebook" position="inside">
+					<field name="order_line">
+						<tree string="Sales Order Lines" editable="top">
+							<field name="weighing_date"/>
+							<field name="product_id"/>
+							<field name="crates"/>
+							<field name="crates_weight"/>
+							<field name="crate_net"/>
+							<field name="product_uom" groups="product.group_uom"/>	
+						</tree>
+					</field>
+				</xpath>
+			</field>
+		</record>
+
+		<record id="sale_hide_email_button" model="ir.ui.view">
+			<field name="name">Hide Send by Email button on sale module</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//form/header/button[3]" position="attributes">
+					<attribute name="invisible">1</attribute>
+					<attribute name="states" />
+				</xpath>
+				<xpath expr="//form/header/button[4]" position="attributes">
+					<attribute name="invisible">1</attribute>
+					<attribute name="states" />
+				</xpath>
+			</field>
+		</record>
+
+		<!-- <record id="action_partner_form_ext" model="ir.actions.act_window">
+            <field name="name">Customers</field>
+            <field name="domain">[('is_an_owner', '=', False)]</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+        	<field name="view_mode">kanban,tree,form</field>
+            <field name="context" eval="{'search_default_farm': 1}"/>
+        	<field name="help" type="html">
+            	<p class="oe_view_nocontent_create">
+                	Click to create Farm. 
+              	</p>              		
+            </field>
+        </record> -->
+
+		<menuitem name="Sales"
+            id="menu_base_partner_for_data_manager"
+            groups="po_f_access_data_manager"
+            sequence="6"/>
+
+		<menuitem id="menu_sales_for_data_manager" name="Sales" parent="menu_base_partner_for_data_manager" sequence="5"/>
+
+		<menuitem id="menu_partner_form_for_data_manager" parent="menu_sales_for_data_manager" action="base.action_partner_form" sequence="3"/>
+		
+        <!-- <menuitem id="menu_partner_form_for_data_manager" parent="menu_sales_for_data_manager" action="action_partner_form_ext" sequence="3"/> -->
+
+	</data>
+</openerp>

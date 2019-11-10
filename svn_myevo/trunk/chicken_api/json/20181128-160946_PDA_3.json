@@ -1,0 +1,106 @@
+{
+    "total_apollo": 0, 
+    "breed": "INDIAN RIVER", 
+    "total_male": 0, 
+    "off_feeding": "no", 
+    "total_female": 0, 
+    "userLorry": "CAB 9898", 
+    "farmer_sign": "R0lGODlhxgA4AHAAACH5BAEAAAEALAAAAADGADgAgQAAAAAAAAAAAAAAAAL/jI+py+0GIni02ouz3rxbCUreSJbmiTKhiLDpC8eyt05ONOf6PocYzgsKhxWfBkhMKnlGDnIJjZpAU5v0iv1QT8+s9xvYvqzgclQM65rXu6ZMzY6PXTq4/E5Dt8n4/lEvxOc3+OCWZEeYaLiEmIi34tXouAYJJjkZufgliLmpWXbZyRiaKWqaRXqq+sa56rr3GhuUKlvr1GqbO0Kr20uB6xt8wStcDAF8W3NYwwwoTFzYLE2nMm197awL3dCI7d1ckm2L/EPuR61t/qt+vu3o3sI+CD8vXz1uj5mfgO5K3wfv3x2BctwRHLiPUMIwCxU1fLTvIMCHBfNJnEgxjsWMOw5z0bpYz6M6kAo5miFFMiS+dcbu1ep3zKSplFj6wWx5gOaVLZ9w5tS5s5LPaEOLujSK9FjSpUCXQiwAACH+/gD0BwGAAWs7MLQWUhJOi8TauCd+lw6LnEDE4HKYRKhuwT5FR1upvJNbPS4WVkmfuV6XHyp+zqJwl9JK7ZNBjSquqmOOFhptnwcpdlUSRosFxSYoDQZ7VVTYfgj/QUCrhYUszXgeGKFMgtCIbpVAtEOyaVhP1O8vydZl8OKqTZMWxS0+z6DeAxVIEWQCEogAZQISiAJFNGYCMpgARjQFCDg2C2doaWprGRwyCQD+/wcBAMAeRTMJAP7/BwEAwB5FOAQA/v8BCq8GNofwEleAkvGG+q5M7rf7bSZjIYSQiBQaNQyDQZC4jHYrF4HCI1HJFLKNNJxHIPKZrO5jL4zE/uCwCKRKMRqDyMCH52znbZrheVwyaUKpX69VahQyLzeg0Gfzuh0mcx+ARKNR6MRiLQyGQaCIbEYXBYBAIVCoVDohGpRIpVLITKyC/vuL++4wAAAAAAAAh3wBQOHwAa7fs88+AB5t7pTwBRckpwVHNy0jkSuE/4AzkJOjZ4xrivOSL5Cbmg+Xu49XnJuS08H7vg228Dp/dEcRZyyvBi9F53DvYLcs/wnGaZDwAHCI8W5w//Hfc+Hy2GVuQx5Wbm/+T84bfa/EbAg8AVswhKAAAAD6AwAEIAAAAEEM+8JCiOsvQgAAgD8AAAAAAAAAALiYz0JpdChCAQCAPwAAAAAA/gAAAOEnyUJLQCxCAACAPwAAAAAAAAAA/W3fQmj1HEIAAIA/AAAAAAAAAADKMP1Ck4YIQgAAgD8AAAAAAAAAAHHFDEP9NMxBAACAPwAAAAAAAAAA2nwcQ08HvkEAAIA/AAAAAAAAAABCGCRD2lbPQQAAgD8AAAAAAAAAANYHI0NmQRFCAACAPwAAAAAAAAAAFAclQ7kYK0IAAIA/AAAAAAAAAAD8LShDy+FTQgAAgD8AAAAAAAAAALZ/J0PS/INCAACAPwAAAAAAAAAAov8vQ6X5kkIAAIA/AAAAAAAAAAAFWTlDXqKcQgAAgD8AAAAAAAAAAJo9P0OMX4FCAACA/T8AAAAAAAAAADZwQ0PKtmdCAACAPwAAAAAAAAAA9LNGQxMlSUIAAIA/AAAAAAAAAADRjlBD5ppdQgAAgD8AAAAAAAAAAKxOVkMKkFxCAACAPwAAAAAAAAAAvO1oQ3YfY0IAAIA/AAAAAAAAAAChfHtDALxTQgAAgD8AAAAAAAAAAE7zhkMM9VdCAACAPwAAAAAAAAAAnYGMQ+YRZUIAAIA/AAAAAAAAAABmDo9DDpCMQgEAgD8AAAAAAAAAACwAk0P+4ZxCAACAPwAAAAAAAAAACgAUAH0bvdDxhtQBCj8AKVOIAoAAAAAAEgAVIAEAAAAAAAAAEHdrniEAAAAAOw==", 
+    "total_do_net_weight": 1.4, 
+    "avg_crates_weight": 0.1, 
+    "batch_option": {
+        "product_id": "Duck", 
+        "age": "28", 
+        "breed": "INDIAN RIVER", 
+        "userFarm": "Dummy Farm", 
+        "farm_house_number": "A", 
+        "batch_id": "Ggjfjf", 
+        "userLorry": "CAB 9898", 
+        "max_net_full_crate": 1.0, 
+        "min_net_full_crate": 0.8
+    }, 
+    "end_loading_time": "2018-11-28 16:10:12", 
+    "lory_number": "CAB 9898", 
+    "crate_loading": [
+        {
+            "nb_added_cover": 0.0, 
+            "weighing_date": "2018-11-28T16:10:06", 
+            "crate_weight_original": 1.6, 
+            "weighing_modified": false, 
+            "buyer": "", 
+            "crate_net": 1.4, 
+            "crate_weight": 1.6, 
+            "number_of_crates": 2, 
+            "buyer_category": "-", 
+            "buyer_id": "10"
+        }
+    ], 
+    "weighing_mode": "OngoingManual", 
+    "totalcover": 0, 
+    "max_net_full_crate": 1.0, 
+    "start_loading_time": "2018-11-28 16:09:59", 
+    "defaultLorry": "Dummy Lorry", 
+    "single_cover_weight": 0.4, 
+    "max_crate_nb": 2, 
+    "farm_id": "Dummy Farm", 
+    "pda_model": "PDA_3", 
+    "last_position_long": "101.631362154596", 
+    "batch_id": "Ggjfjf", 
+    "logic_used": "lower", 
+    "other_comment": "", 
+    "avg_bird_weight": 0.07, 
+    "owner_id": "Demomy Soupese", 
+    "username": " ", 
+    "product": "Duck", 
+    "pda_do_id": "20181128-160946_PDA_3", 
+    "tar_date": "2018-11-28T16:09:46", 
+    "total_crates": 2, 
+    "min_net_full_crate": 0.8, 
+    "total_gross_weight": 1.6, 
+    "pda_id": "PDA_3", 
+    "water_fogging": "no", 
+    "date": "2018-11-28 16:09:59", 
+    "last_position_latt": "3.13189618524673", 
+    "product_id": "3", 
+    "scale_id": "SC7ED2S", 
+    "total_nb_birds": 20, 
+    "userFarm": "Dummy Farm", 
+    "defaultFarm": "Dummy Farm 2", 
+    "bird_distribution_per_crate": {
+        "mix": {
+            "nb_crates": 2, 
+            "total_birds": 20, 
+            "avg_birds_per_crate": 10
+        }, 
+        "C": {
+            "nb_crates": 0, 
+            "total_birds": 0, 
+            "avg_birds_per_crate": 0
+        }, 
+        "B": {
+            "nb_crates": 0, 
+            "total_birds": 0, 
+            "avg_birds_per_crate": 0
+        }, 
+        "male": {
+            "nb_crates": 0, 
+            "total_birds": 0, 
+            "avg_birds_per_crate": 0
+        }, 
+        "female": {
+            "nb_crates": 0, 
+            "total_birds": 0, 
+            "avg_birds_per_crate": 0
+        }
+    }, 
+    "farm_house_number": "A", 
+    "owner_sign": "R0lGODlhxAAsAHAAACH5BAEAAAEALAAAAADEACwAgQAAAAAAAAAAAAAAAAL/jI+pywkPm5y02ouz3tzCH3XiSJbmiYWIirbT58ay90j1jIM3zud78+uVYIeg8DhiAY1IjdLAbEopTxtguiEuothukbv00q4vsvgcqFbAYm0Z7VXT4Ar51kxH2td4uHued7TnETgYFsjDltIXp2jFiHjieDHpA+l0GSlimJEpWEnlqdkJSilq2VI6enfKoTr0yrfawZnVmhoLOLt4S9sL++uaWzism1jMuxv6KVRr4oyIvIiKBU1nvSnN2obdGAzr0h2u3fz9bM7wd6YeSY4JjN4jXr6ey07sLhmPAg2i/JUvyb5xp/z9qzNP30CCP3QEnHLv00IZDiMeZPVw2cWNPsIs2jKSkaMmh9nYhRQ5qqIolYdQuiShMiabhC9rpsN20qbOaTt7cvMJFOLEoESNFT06DqlSgkubnnMKdUQBACH+/gDLBgGAAWs7MLQWUhJOi8TauCd+lw6LnEDE4HKYRKhuwT5FR1upvJNbPS4WVkmfuV6XHyp+zqJwl9JK7ZNBjSquqmOOFhptnwcpdlUSRosFxSYoDQZ7VVTYfgj/QUCrhYUszXgeGKFMgtCIbpVAtEOyaVhP1O8vydZl8OKqTZMWxS0+z6DeAxVIEWQCEogAZQISiAJFNGYCMpgARjQFCDg2C2doaWprGRwyCQD+/wcBAMAeRTMJAP7/BwEAwB5FOAQA/v8BCoYFKofwF0eAqeeXjA0kkM9nMzmsvjcLi00rFGoUggsxm9Bm8vj8PgMUiUYlUsm0ykkIgEVj9JCH/u3s7n+v3GgxaoV67YGvVOikNicloNXttnn8JiEmmkwlkolk2mkmjEIR2Rzmez+Zw8CC/vuL++4wAAAAAACHfADZDe0sfxJx+A/3mEejT8RunHI+G9PkM8Zc7NmPjGOIh5Fztxe/i7ovoTOI35DrnZek+6hnlhtzcd3wi1j5G7mVfAIh4TM/ARlwtHMR8Zhwf3EC9bMACT0ArjwQlAAAAACCAwAEIAAAwED0BMlCCPKXQgAAgD8AAAAAAAAAAM9v2EJYf2pCAACAPwAAAAAAAAAAtQ/2QpFNOEIAAIA/AAAAAAAAAAAsTQpDgaINQgAAgD8AAAAAAAAAAMsoE0MM/sXpQQAAgD8AAAAAAAAAAAznGUNCzh1CAACAPwAAAAAAAAAA7vUaQ1VHPEIAAIA/AAAAAAAAAADlIhxDwCJeQgAAgD8AAAAAAAAAAARiIkPE3oBCAACAPwAAAAAAAAAABgwsQ4vjfEIAAIA/AAAAAAAAAADOvj9D//9yQgAAgD8AAAAAAAAAADbUTEM2ejFCAACAPwAAAAAAAAAAwCddQ5HiDUIAAIA/AAAAAAAAAACC82NDBl0MQgAAgD8AAAAAAAAAALBFZkNQwTRCAACAPwAAAAAAAAAAQWNrQx88REIAAIA/AAAAAAAAAADclHpDlHWAQgAAgD8AAAAAAAAAVABMRolDwgWRQgAAgD8AAAAAAAAAAKaHk0MAJYBCAACAPwAAAAAAAAAACgAUANlme9HxhtQBCRYoApN34AAAAAASABUgAQAAAAAAAABkgX6eIQAAAAA7", 
+    "total_creates_weight": 0.2, 
+    "loading_option": {
+        "logic_used": "lower", 
+        "max_crate_nb": 2, 
+        "avg_crates_weight": 0.1
+    }, 
+    "age": "28", 
+    "loading_id": 0
+}

@@ -1,0 +1,403 @@
+2019-04-09 15:46:36,610 1 INFO ? openerp: OpenERP version 9.0c-20180808
+2019-04-09 15:46:36,611 1 INFO ? openerp: addons paths: ['/var/lib/odoo/addons/9.0', u'/mnt/extra-addons', '/usr/lib/python2.7/dist-packages/openerp/addons']
+2019-04-09 15:46:36,611 1 INFO ? openerp: database: admin@db:5432
+2019-04-09 15:46:36,939 1 INFO ? openerp.service.server: HTTP service (werkzeug) running on a68d649c6b72:8069
+2019-04-09 15:46:36,955 1 INFO db_demomy openerp.modules.loading: loading 1 modules...
+2019-04-09 15:46:37,181 1 INFO db_demomy openerp.modules.module: module base: creating or updating database tables
+2019-04-09 15:46:38,572 1 INFO db_demomy openerp.modules.loading: loading base/base_data.xml
+2019-04-09 15:46:38,899 1 INFO db_demomy openerp.modules.loading: loading base/res/res_currency_data.xml
+2019-04-09 15:46:39,529 1 INFO db_demomy openerp.modules.loading: loading base/res/res_country_data.xml
+2019-04-09 15:46:43,208 1 INFO db_demomy openerp.modules.loading: loading base/security/base_security.xml
+2019-04-09 15:46:43,497 1 INFO db_demomy openerp.modules.loading: loading base/base_menu.xml
+2019-04-09 15:46:43,748 1 INFO db_demomy openerp.modules.loading: loading base/res/res_config.xml
+2019-04-09 15:46:43,793 1 INFO db_demomy openerp.modules.loading: loading base/res/res.country.state.csv
+2019-04-09 15:46:44,002 1 INFO db_demomy openerp.modules.loading: loading base/ir/ir_actions.xml
+2019-04-09 15:46:44,552 1 INFO db_demomy openerp.modules.loading: loading base/ir/ir_config_parameter_view.xml
+2019-04-09 15:46:44,649 1 INFO db_demomy openerp.modules.loading: loading base/ir/ir_cron_view.xml
+2019-04-09 15:46:44,770 1 INFO db_demomy openerp.modules.loading: loading base/ir/ir_filters.xml
+2019-04-09 15:46:44,901 1 INFO db_demomy openerp.modules.loading: loading base/ir/ir_mail_server_view.xml
+2019-04-09 15:46:45,021 1 INFO db_demomy openerp.modules.loading: loading base/ir/ir_model_view.xml
+2019-04-09 15:46:45,758 1 INFO db_demomy openerp.modules.loading: loading base/ir/ir_attachment_view.xml
+2019-04-09 15:46:45,882 1 INFO db_demomy openerp.modules.loading: loading base/ir/ir_rule_view.xml
+2019-04-09 15:46:46,018 1 INFO db_demomy openerp.modules.loading: loading base/ir/ir_sequence_view.xml
+2019-04-09 15:46:46,144 1 INFO db_demomy openerp.modules.loading: loading base/ir/ir_translation_view.xml
+2019-04-09 15:46:46,274 1 INFO db_demomy openerp.modules.loading: loading base/ir/ir_ui_menu_view.xml
+2019-04-09 15:46:46,410 1 INFO db_demomy openerp.modules.loading: loading base/ir/ir_ui_view_view.xml
+2019-04-09 15:46:46,682 1 INFO db_demomy openerp.modules.loading: loading base/ir/ir_values_view.xml
+2019-04-09 15:46:46,949 1 INFO db_demomy openerp.modules.loading: loading base/ir/ir_autovacuum.xml
+2019-04-09 15:46:46,968 1 INFO db_demomy openerp.modules.loading: loading base/ir/ir_model_report.xml
+2019-04-09 15:46:47,016 1 INFO db_demomy openerp.modules.loading: loading base/ir/report_ir_model.xml
+2019-04-09 15:46:47,058 1 INFO db_demomy openerp.modules.loading: loading base/ir/ir_logging_view.xml
+2019-04-09 15:46:47,210 1 INFO db_demomy openerp.modules.loading: loading base/ir/ir_qweb.xml
+2019-04-09 15:46:47,251 1 INFO db_demomy openerp.modules.loading: loading base/workflow/workflow_view.xml
+2019-04-09 15:46:48,231 1 INFO db_demomy openerp.modules.loading: loading base/module/module_view.xml
+2019-04-09 15:46:48,719 1 INFO db_demomy openerp.modules.loading: loading base/module/module_data.xml
+2019-04-09 15:46:49,224 1 INFO db_demomy openerp.modules.loading: loading base/module/module_report.xml
+2019-04-09 15:46:49,242 1 INFO db_demomy openerp.modules.loading: loading base/module/report/report_ir_module_reference.xml
+2019-04-09 15:46:49,269 1 INFO db_demomy openerp.modules.loading: loading base/module/wizard/base_module_update_view.xml
+2019-04-09 15:46:49,317 1 INFO db_demomy openerp.modules.loading: loading base/module/wizard/base_language_install_view.xml
+2019-04-09 15:46:49,366 1 INFO db_demomy openerp.modules.loading: loading base/module/wizard/base_import_language_view.xml
+2019-04-09 15:46:49,411 1 INFO db_demomy openerp.modules.loading: loading base/module/wizard/base_module_upgrade_view.xml
+2019-04-09 15:46:49,488 1 INFO db_demomy openerp.modules.loading: loading base/module/wizard/base_module_configuration_view.xml
+2019-04-09 15:46:49,514 1 INFO db_demomy openerp.modules.loading: loading base/module/wizard/base_export_language_view.xml
+2019-04-09 15:46:49,560 1 INFO db_demomy openerp.modules.loading: loading base/module/wizard/base_update_translations_view.xml
+2019-04-09 15:46:49,608 1 INFO db_demomy openerp.modules.loading: loading base/module/wizard/base_module_immediate_install.xml
+2019-04-09 15:46:49,630 1 INFO db_demomy openerp.modules.loading: loading base/res/res_company_view.xml
+2019-04-09 15:46:49,735 1 INFO db_demomy openerp.modules.loading: loading base/res/res_request_view.xml
+2019-04-09 15:46:49,830 1 INFO db_demomy openerp.modules.loading: loading base/res/res_lang_view.xml
+2019-04-09 15:46:49,939 1 INFO db_demomy openerp.modules.loading: loading base/res/res_partner_view.xml
+2019-04-09 15:46:50,463 1 INFO db_demomy openerp.modules.loading: loading base/res/res_bank_view.xml
+2019-04-09 15:46:50,683 1 INFO db_demomy openerp.modules.loading: loading base/res/res_country_view.xml
+2019-04-09 15:46:50,931 1 INFO db_demomy openerp.modules.loading: loading base/res/res_currency_view.xml
+2019-04-09 15:46:51,166 1 INFO db_demomy openerp.modules.loading: loading base/res/res_users_view.xml
+2019-04-09 15:46:51,753 1 INFO db_demomy openerp.modules.loading: loading base/res/res_partner_data.xml
+2019-04-09 15:46:51,788 1 INFO db_demomy openerp.modules.loading: loading base/res/ir_property_view.xml
+2019-04-09 15:46:51,901 1 INFO db_demomy openerp.modules.loading: loading base/res/res_security.xml
+2019-04-09 15:46:51,939 1 INFO db_demomy openerp.modules.loading: loading base/security/ir.model.access.csv
+2019-04-09 15:46:53,577 1 INFO db_demomy openerp.addons.base.ir.ir_translation: module base: loading base translation file en for language en_US
+2019-04-09 15:46:53,577 1 INFO db_demomy openerp.tools.translate: loading /usr/lib/python2.7/dist-packages/openerp/addons/base/i18n/en.po
+2019-04-09 15:46:55,167 1 INFO db_demomy openerp.modules.loading: 1 modules loaded in 18.21s, 0 queries
+2019-04-09 15:46:55,218 1 INFO db_demomy openerp.modules.loading: loading 14 modules...
+2019-04-09 15:46:55,312 1 INFO db_demomy openerp.modules.module: module auth_crypt: creating or updating database tables
+2019-04-09 15:46:55,347 1 INFO db_demomy openerp.addons.auth_crypt.auth_crypt: Hashing passwords, may be slow for databases with many users...
+2019-04-09 15:46:55,527 1 INFO db_demomy openerp.modules.module: module web: creating or updating database tables
+2019-04-09 15:46:55,530 1 INFO db_demomy openerp.modules.loading: loading web/views/webclient_templates.xml
+2019-04-09 15:46:55,977 1 INFO db_demomy openerp.modules.module: module base_import: creating or updating database tables
+2019-04-09 15:46:56,409 1 INFO db_demomy openerp.modules.loading: loading base_import/security/ir.model.access.csv
+2019-04-09 15:46:56,603 1 INFO db_demomy openerp.modules.loading: loading base_import/views/base_import.xml
+2019-04-09 15:46:56,745 1 INFO db_demomy openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2019-04-09 15:46:56,819 1 INFO db_demomy openerp.modules.module: module report: creating or updating database tables
+2019-04-09 15:46:56,994 1 INFO db_demomy openerp.modules.loading: loading report/views/layouts.xml
+2019-04-09 15:46:57,208 1 INFO db_demomy openerp.modules.loading: loading report/views/views.xml
+2019-04-09 15:46:57,464 1 INFO db_demomy openerp.modules.loading: loading report/data/report_paperformat.xml
+2019-04-09 15:46:57,480 1 INFO db_demomy openerp.modules.loading: loading report/security/ir.model.access.csv
+2019-04-09 15:46:57,520 1 INFO db_demomy openerp.modules.loading: loading report/views/report.xml
+2019-04-09 15:46:57,788 1 INFO db_demomy openerp.modules.module: module web_calendar: creating or updating database tables
+2019-04-09 15:46:57,790 1 INFO db_demomy openerp.modules.loading: loading web_calendar/views/web_calendar.xml
+2019-04-09 15:46:57,945 1 INFO db_demomy openerp.modules.module: module web_diagram: creating or updating database tables
+2019-04-09 15:46:57,947 1 INFO db_demomy openerp.modules.loading: loading web_diagram/views/web_diagram.xml
+2019-04-09 15:46:58,202 1 INFO db_demomy openerp.modules.module: module web_editor: creating or updating database tables
+2019-04-09 15:46:58,411 1 INFO db_demomy openerp.modules.loading: loading web_editor/security/ir.model.access.csv
+2019-04-09 15:46:58,440 1 INFO db_demomy openerp.modules.loading: loading web_editor/views/editor.xml
+2019-04-09 15:46:58,609 1 INFO db_demomy openerp.modules.loading: loading web_editor/views/iframe.xml
+2019-04-09 15:46:58,656 1 INFO db_demomy openerp.modules.loading: loading web_editor/views/snippets.xml
+2019-04-09 15:46:58,885 1 INFO db_demomy openerp.modules.module: module web_kanban: creating or updating database tables
+2019-04-09 15:46:58,888 1 INFO db_demomy openerp.modules.loading: loading web_kanban/views/web_kanban.xml
+2019-04-09 15:46:59,059 1 INFO db_demomy openerp.modules.module: module web_planner: creating or updating database tables
+2019-04-09 15:46:59,126 1 INFO db_demomy openerp.modules.loading: loading web_planner/security/ir.model.access.csv
+2019-04-09 15:46:59,179 1 INFO db_demomy openerp.modules.loading: loading web_planner/security/web_planner_security.xml
+2019-04-09 15:46:59,211 1 INFO db_demomy openerp.modules.loading: loading web_planner/views/web_planner_templates.xml
+2019-04-09 15:46:59,347 1 INFO db_demomy openerp.modules.loading: loading web_planner/views/web_planner_views.xml
+2019-04-09 15:46:59,431 1 INFO db_demomy openerp.addons.base.ir.ir_translation: module web_planner: loading translation file (en_US) for language en_US
+2019-04-09 15:46:59,432 1 INFO db_demomy openerp.tools.translate: loading /usr/lib/python2.7/dist-packages/openerp/addons/web_planner/i18n/en_US.po
+2019-04-09 15:46:59,630 1 INFO db_demomy openerp.modules.module: module web_tip: creating or updating database tables
+2019-04-09 15:46:59,725 1 INFO db_demomy openerp.modules.loading: loading web_tip/security/ir.model.access.csv
+2019-04-09 15:46:59,740 1 INFO db_demomy openerp.modules.loading: loading web_tip/views/tip.xml
+2019-04-09 15:46:59,843 1 INFO db_demomy openerp.modules.loading: loading web_tip/web_tip_view.xml
+2019-04-09 15:46:59,942 1 INFO db_demomy openerp.modules.loading: loading web_tip/web_tip_data.xml
+2019-04-09 15:47:00,142 1 INFO db_demomy openerp.modules.module: module web_view_editor: creating or updating database tables
+2019-04-09 15:47:00,145 1 INFO db_demomy openerp.modules.loading: loading web_view_editor/views/web_view_editor.xml
+2019-04-09 15:47:00,341 1 INFO db_demomy openerp.modules.module: module web_kanban_gauge: creating or updating database tables
+2019-04-09 15:47:00,343 1 INFO db_demomy openerp.modules.loading: loading web_kanban_gauge/views/web_kanban_gauge.xml
+2019-04-09 15:47:00,554 1 INFO db_demomy openerp.modules.module: module web_settings_dashboard: creating or updating database tables
+2019-04-09 15:47:00,581 1 INFO db_demomy openerp.addons.auth_crypt.auth_crypt: Hashing passwords, may be slow for databases with many users...
+2019-04-09 15:47:00,584 1 INFO db_demomy openerp.modules.loading: loading web_settings_dashboard/views/dashboard_views.xml
+2019-04-09 15:47:00,621 1 INFO db_demomy openerp.modules.loading: loading web_settings_dashboard/views/dashboard_templates.xml
+2019-04-09 15:47:00,726 1 INFO db_demomy openerp.modules.loading: 14 modules loaded in 5.51s, 0 queries
+2019-04-09 15:47:00,943 1 INFO db_demomy openerp.modules.loading: Modules loaded.
+2019-04-09 15:47:00,945 1 INFO db_demomy openerp.models: Computing parent left and right for table ir_ui_menu...
+2019-04-09 15:47:38,033 1 INFO db_demomy openerp.addons.base.ir.ir_autovacuum: GC'd 0 user log entries
+2019-04-09 15:47:41,234 1 INFO ? openerp.addons.bus.models.bus: Bus.loop listen imbus on db postgres
+2019-04-09 15:47:42,551 1 INFO ? openerp.http: HTTP Configuring static files
+2019-04-09 15:47:42,560 1 INFO ? openerp.http: Generating nondb routing
+2019-04-09 15:47:42,574 1 INFO ? werkzeug: 192.228.249.33 - - [09/Apr/2019 15:47:42] "GET / HTTP/1.1" 200 -
+2019-04-09 15:47:42,924 1 INFO ? werkzeug: 192.228.249.33 - - [09/Apr/2019 15:47:42] "GET /web HTTP/1.1" 303 -
+2019-04-09 15:47:43,025 1 INFO ? werkzeug: 192.228.249.33 - - [09/Apr/2019 15:47:43] "GET /web/database/selector HTTP/1.1" 200 -
+2019-04-09 15:47:56,358 1 INFO None openerp.service.db: Create database `test1`.
+2019-04-09 15:47:57,324 1 INFO test1 openerp.modules.loading: loading 1 modules...
+2019-04-09 15:47:57,396 1 INFO test1 openerp.modules.module: module base: creating or updating database tables
+2019-04-09 15:47:57,907 1 INFO test1 openerp.models: Computing parent left and right for table ir_ui_menu...
+2019-04-09 15:48:00,121 1 INFO test1 openerp.models: Computing parent left and right for table res_partner_category...
+2019-04-09 15:48:01,802 1 INFO test1 openerp.models: storing computed values of fields.function 'model_data_id'
+2019-04-09 15:48:01,803 1 INFO test1 openerp.models: storing computed values of fields.function 'report_file'
+2019-04-09 15:48:01,803 1 INFO test1 openerp.models: storing computed values of fields.function 'crud_model_name'
+2019-04-09 15:48:01,804 1 INFO test1 openerp.models: storing computed values of fields.function 'wkf_model_name'
+2019-04-09 15:48:01,804 1 INFO test1 openerp.models: storing computed values of fields.function 'res_name'
+2019-04-09 15:48:01,805 1 INFO test1 openerp.models: storing computed values of fields.function 'global'
+2019-04-09 15:48:01,805 1 INFO test1 openerp.models: storing computed values of fields.function 'menus_by_module'
+2019-04-09 15:48:02,062 1 INFO test1 openerp.models: storing computed values of fields.function 'views_by_module'
+2019-04-09 15:48:02,176 1 INFO test1 openerp.models: storing computed values of fields.function 'reports_by_module'
+2019-04-09 15:48:02,292 1 INFO test1 openerp.models: storing computed values of fields.function 'display_name'
+2019-04-09 15:48:02,295 1 INFO test1 openerp.models: storing computed values of fields.function 'commercial_partner_id'
+2019-04-09 15:48:02,296 1 INFO test1 openerp.models: storing computed values of fields.function 'logo_web'
+2019-04-09 15:48:02,299 1 INFO test1 openerp.models: storing computed values of fields.function 'email'
+2019-04-09 15:48:02,299 1 INFO test1 openerp.models: storing computed values of fields.function 'phone'
+2019-04-09 15:48:02,300 1 INFO test1 openerp.models: storing computed values of fields.function 'share'
+2019-04-09 15:48:02,302 1 INFO test1 openerp.models: Storing computed values of res.partner.bank fields sanitized_acc_number
+2019-04-09 15:48:02,304 1 INFO test1 openerp.modules.loading: loading base/base_data.xml
+2019-04-09 15:48:02,695 1 INFO test1 openerp.modules.loading: loading base/res/res_currency_data.xml
+2019-04-09 15:48:03,360 1 INFO test1 openerp.modules.loading: loading base/res/res_country_data.xml
+2019-04-09 15:48:07,677 1 INFO test1 openerp.modules.loading: loading base/security/base_security.xml
+2019-04-09 15:48:07,987 1 INFO test1 openerp.modules.loading: loading base/base_menu.xml
+2019-04-09 15:48:08,253 1 INFO test1 openerp.modules.loading: loading base/res/res_config.xml
+2019-04-09 15:48:08,300 1 INFO test1 openerp.modules.loading: loading base/res/res.country.state.csv
+2019-04-09 15:48:08,578 1 INFO test1 openerp.modules.loading: loading base/ir/ir_actions.xml
+2019-04-09 15:48:09,181 1 INFO test1 openerp.modules.loading: loading base/ir/ir_config_parameter_view.xml
+2019-04-09 15:48:09,275 1 INFO test1 openerp.modules.loading: loading base/ir/ir_cron_view.xml
+2019-04-09 15:48:09,410 1 INFO test1 openerp.modules.loading: loading base/ir/ir_filters.xml
+2019-04-09 15:48:09,548 1 INFO test1 openerp.modules.loading: loading base/ir/ir_mail_server_view.xml
+2019-04-09 15:48:09,676 1 INFO test1 openerp.modules.loading: loading base/ir/ir_model_view.xml
+2019-04-09 15:48:10,401 1 INFO test1 openerp.modules.loading: loading base/ir/ir_attachment_view.xml
+2019-04-09 15:48:10,547 1 INFO test1 openerp.modules.loading: loading base/ir/ir_rule_view.xml
+2019-04-09 15:48:10,706 1 INFO test1 openerp.modules.loading: loading base/ir/ir_sequence_view.xml
+2019-04-09 15:48:10,851 1 INFO test1 openerp.modules.loading: loading base/ir/ir_translation_view.xml
+2019-04-09 15:48:11,002 1 INFO test1 openerp.modules.loading: loading base/ir/ir_ui_menu_view.xml
+2019-04-09 15:48:11,148 1 INFO test1 openerp.modules.loading: loading base/ir/ir_ui_view_view.xml
+2019-04-09 15:48:11,432 1 INFO test1 openerp.modules.loading: loading base/ir/ir_values_view.xml
+2019-04-09 15:48:11,692 1 INFO test1 openerp.modules.loading: loading base/ir/ir_autovacuum.xml
+2019-04-09 15:48:11,711 1 INFO test1 openerp.modules.loading: loading base/ir/ir_model_report.xml
+2019-04-09 15:48:11,752 1 INFO test1 openerp.modules.loading: loading base/ir/report_ir_model.xml
+2019-04-09 15:48:11,795 1 INFO test1 openerp.modules.loading: loading base/ir/ir_logging_view.xml
+2019-04-09 15:48:11,934 1 INFO test1 openerp.modules.loading: loading base/ir/ir_qweb.xml
+2019-04-09 15:48:11,971 1 INFO test1 openerp.modules.loading: loading base/workflow/workflow_view.xml
+2019-04-09 15:48:12,733 1 INFO test1 openerp.modules.loading: loading base/module/module_view.xml
+2019-04-09 15:48:13,149 1 INFO test1 openerp.modules.loading: loading base/module/module_data.xml
+2019-04-09 15:48:13,537 1 INFO test1 openerp.modules.loading: loading base/module/module_report.xml
+2019-04-09 15:48:13,560 1 INFO test1 openerp.modules.loading: loading base/module/report/report_ir_module_reference.xml
+2019-04-09 15:48:13,590 1 INFO test1 openerp.modules.loading: loading base/module/wizard/base_module_update_view.xml
+2019-04-09 15:48:13,732 1 INFO test1 openerp.modules.loading: loading base/module/wizard/base_language_install_view.xml
+2019-04-09 15:48:13,780 1 INFO test1 openerp.modules.loading: loading base/module/wizard/base_import_language_view.xml
+2019-04-09 15:48:13,829 1 INFO test1 openerp.modules.loading: loading base/module/wizard/base_module_upgrade_view.xml
+2019-04-09 15:48:13,915 1 INFO test1 openerp.modules.loading: loading base/module/wizard/base_module_configuration_view.xml
+2019-04-09 15:48:13,945 1 INFO test1 openerp.modules.loading: loading base/module/wizard/base_export_language_view.xml
+2019-04-09 15:48:14,009 1 INFO test1 openerp.modules.loading: loading base/module/wizard/base_update_translations_view.xml
+2019-04-09 15:48:14,056 1 INFO test1 openerp.modules.loading: loading base/module/wizard/base_module_immediate_install.xml
+2019-04-09 15:48:14,076 1 INFO test1 openerp.modules.loading: loading base/res/res_company_view.xml
+2019-04-09 15:48:14,182 1 INFO test1 openerp.modules.loading: loading base/res/res_request_view.xml
+2019-04-09 15:48:14,270 1 INFO test1 openerp.modules.loading: loading base/res/res_lang_view.xml
+2019-04-09 15:48:14,377 1 INFO test1 openerp.modules.loading: loading base/res/res_partner_view.xml
+2019-04-09 15:48:14,856 1 INFO test1 openerp.modules.loading: loading base/res/res_bank_view.xml
+2019-04-09 15:48:15,051 1 INFO test1 openerp.modules.loading: loading base/res/res_country_view.xml
+2019-04-09 15:48:15,282 1 INFO test1 openerp.modules.loading: loading base/res/res_currency_view.xml
+2019-04-09 15:48:15,473 1 INFO test1 openerp.modules.loading: loading base/res/res_users_view.xml
+2019-04-09 15:48:16,008 1 INFO test1 openerp.modules.loading: loading base/res/res_partner_data.xml
+2019-04-09 15:48:16,036 1 INFO test1 openerp.modules.loading: loading base/res/ir_property_view.xml
+2019-04-09 15:48:16,120 1 INFO test1 openerp.modules.loading: loading base/res/res_security.xml
+2019-04-09 15:48:16,157 1 INFO test1 openerp.modules.loading: loading base/security/ir.model.access.csv
+2019-04-09 15:48:17,959 1 INFO test1 openerp.addons.base.ir.ir_translation: module base: loading base translation file en for language en_US
+2019-04-09 15:48:17,960 1 INFO test1 openerp.tools.translate: loading /usr/lib/python2.7/dist-packages/openerp/addons/base/i18n/en.po
+2019-04-09 15:48:19,462 1 INFO test1 openerp.modules.loading: 1 modules loaded in 22.14s, 0 queries
+2019-04-09 15:48:19,506 1 INFO test1 openerp.modules.loading: loading 14 modules...
+2019-04-09 15:48:19,577 1 INFO test1 openerp.modules.module: module auth_crypt: creating or updating database tables
+2019-04-09 15:48:19,616 1 INFO test1 openerp.addons.auth_crypt.auth_crypt: Hashing passwords, may be slow for databases with many users...
+2019-04-09 15:48:19,781 1 INFO test1 openerp.modules.module: module web: creating or updating database tables
+2019-04-09 15:48:19,783 1 INFO test1 openerp.modules.loading: loading web/views/webclient_templates.xml
+2019-04-09 15:48:20,254 1 INFO test1 openerp.modules.module: module base_import: creating or updating database tables
+2019-04-09 15:48:20,717 1 INFO test1 openerp.modules.loading: loading base_import/security/ir.model.access.csv
+2019-04-09 15:48:20,987 1 INFO test1 openerp.modules.loading: loading base_import/views/base_import.xml
+2019-04-09 15:48:21,152 1 INFO test1 openerp.modules.module: module report: creating or updating database tables
+2019-04-09 15:48:21,360 1 INFO test1 openerp.modules.loading: loading report/views/layouts.xml
+2019-04-09 15:48:21,623 1 INFO test1 openerp.modules.loading: loading report/views/views.xml
+2019-04-09 15:48:21,938 1 INFO test1 openerp.modules.loading: loading report/data/report_paperformat.xml
+2019-04-09 15:48:21,957 1 INFO test1 openerp.modules.loading: loading report/security/ir.model.access.csv
+2019-04-09 15:48:22,012 1 INFO test1 openerp.modules.loading: loading report/views/report.xml
+2019-04-09 15:48:22,351 1 INFO test1 openerp.modules.module: module web_calendar: creating or updating database tables
+2019-04-09 15:48:22,353 1 INFO test1 openerp.modules.loading: loading web_calendar/views/web_calendar.xml
+2019-04-09 15:48:22,518 1 INFO test1 openerp.modules.module: module web_diagram: creating or updating database tables
+2019-04-09 15:48:22,521 1 INFO test1 openerp.modules.loading: loading web_diagram/views/web_diagram.xml
+2019-04-09 15:48:22,743 1 INFO test1 openerp.modules.module: module web_editor: creating or updating database tables
+2019-04-09 15:48:22,953 1 INFO test1 openerp.modules.loading: loading web_editor/security/ir.model.access.csv
+2019-04-09 15:48:22,997 1 INFO test1 openerp.modules.loading: loading web_editor/views/editor.xml
+2019-04-09 15:48:23,168 1 INFO test1 openerp.modules.loading: loading web_editor/views/iframe.xml
+2019-04-09 15:48:23,214 1 INFO test1 openerp.modules.loading: loading web_editor/views/snippets.xml
+2019-04-09 15:48:23,459 1 INFO test1 openerp.modules.module: module web_kanban: creating or updating database tables
+2019-04-09 15:48:23,462 1 INFO test1 openerp.modules.loading: loading web_kanban/views/web_kanban.xml
+2019-04-09 15:48:23,662 1 INFO test1 openerp.modules.module: module web_planner: creating or updating database tables
+2019-04-09 15:48:23,722 1 INFO test1 openerp.modules.loading: loading web_planner/security/ir.model.access.csv
+2019-04-09 15:48:23,784 1 INFO test1 openerp.modules.loading: loading web_planner/security/web_planner_security.xml
+2019-04-09 15:48:23,819 1 INFO test1 openerp.modules.loading: loading web_planner/views/web_planner_templates.xml
+2019-04-09 15:48:23,985 1 INFO test1 openerp.modules.loading: loading web_planner/views/web_planner_views.xml
+2019-04-09 15:48:24,068 1 INFO test1 openerp.addons.base.ir.ir_translation: module web_planner: loading translation file (en_US) for language en_US
+2019-04-09 15:48:24,068 1 INFO test1 openerp.tools.translate: loading /usr/lib/python2.7/dist-packages/openerp/addons/web_planner/i18n/en_US.po
+2019-04-09 15:48:24,264 1 INFO test1 openerp.modules.module: module web_tip: creating or updating database tables
+2019-04-09 15:48:24,344 1 INFO test1 openerp.modules.loading: loading web_tip/security/ir.model.access.csv
+2019-04-09 15:48:24,369 1 INFO test1 openerp.modules.loading: loading web_tip/views/tip.xml
+2019-04-09 15:48:24,421 1 INFO test1 openerp.modules.loading: loading web_tip/web_tip_view.xml
+2019-04-09 15:48:24,526 1 INFO test1 openerp.modules.loading: loading web_tip/web_tip_data.xml
+2019-04-09 15:48:24,711 1 INFO test1 openerp.modules.module: module web_view_editor: creating or updating database tables
+2019-04-09 15:48:24,713 1 INFO test1 openerp.modules.loading: loading web_view_editor/views/web_view_editor.xml
+2019-04-09 15:48:24,910 1 INFO test1 openerp.modules.module: module web_kanban_gauge: creating or updating database tables
+2019-04-09 15:48:24,912 1 INFO test1 openerp.modules.loading: loading web_kanban_gauge/views/web_kanban_gauge.xml
+2019-04-09 15:48:25,184 1 INFO test1 openerp.modules.module: module web_settings_dashboard: creating or updating database tables
+2019-04-09 15:48:25,216 1 INFO test1 openerp.addons.auth_crypt.auth_crypt: Hashing passwords, may be slow for databases with many users...
+2019-04-09 15:48:25,218 1 INFO test1 openerp.modules.loading: loading web_settings_dashboard/views/dashboard_views.xml
+2019-04-09 15:48:25,247 1 INFO test1 openerp.modules.loading: loading web_settings_dashboard/views/dashboard_templates.xml
+2019-04-09 15:48:25,334 1 INFO test1 openerp.modules.loading: 14 modules loaded in 5.83s, 0 queries
+2019-04-09 15:48:25,599 1 INFO test1 openerp.modules.loading: Modules loaded.
+2019-04-09 15:48:25,600 1 INFO test1 openerp.models: Computing parent left and right for table ir_ui_menu...
+2019-04-09 15:48:25,649 1 INFO test1 openerp.addons.base.ir.ir_translation: module base: loading base translation file en for language en_US
+2019-04-09 15:48:25,649 1 INFO test1 openerp.tools.translate: loading /usr/lib/python2.7/dist-packages/openerp/addons/base/i18n/en.po
+2019-04-09 15:48:25,664 1 INFO test1 openerp.addons.base.ir.ir_translation: module web_planner: loading translation file (en_US) for language en_US
+2019-04-09 15:48:25,664 1 INFO test1 openerp.tools.translate: loading /usr/lib/python2.7/dist-packages/openerp/addons/web_planner/i18n/en_US.po
+2019-04-09 15:48:25,900 1 INFO test1 werkzeug: 192.228.249.33 - - [09/Apr/2019 15:48:25] "POST /web/database/create HTTP/1.1" 303 -
+2019-04-09 15:48:25,947 1 WARNING ? openerp.http: Logged into database 'test1', but dbfilter rejects it; logging session out.
+2019-04-09 15:48:25,961 1 INFO ? werkzeug: 192.228.249.33 - - [09/Apr/2019 15:48:25] "GET /web/ HTTP/1.1" 303 -
+2019-04-09 15:48:25,989 1 WARNING ? openerp.http: Logged into database 'test1', but dbfilter rejects it; logging session out.
+2019-04-09 15:48:26,031 1 INFO ? werkzeug: 192.228.249.33 - - [09/Apr/2019 15:48:26] "GET /web/database/selector HTTP/1.1" 200 -
+2019-04-09 15:48:39,095 1 INFO test1 openerp.addons.base.ir.ir_autovacuum: GC'd 0 user log entries
+2019-04-09 15:50:12,969 1 INFO ? werkzeug: 192.228.249.33 - - [09/Apr/2019 15:50:12] "GET /web/database/selector HTTP/1.1" 200 -
+2019-04-09 15:50:13,751 1 INFO ? werkzeug: 192.228.249.33 - - [09/Apr/2019 15:50:13] "GET /web/static/src/img/favicon.ico HTTP/1.1" 200 -
+2019-04-09 15:50:25,290 1 INFO ? werkzeug: 192.228.249.33 - - [09/Apr/2019 15:50:25] "GET / HTTP/1.1" 200 -
+2019-04-09 15:50:25,743 1 INFO ? werkzeug: 192.228.249.33 - - [09/Apr/2019 15:50:25] "GET /web HTTP/1.1" 303 -
+2019-04-09 15:50:25,812 1 INFO ? werkzeug: 192.228.249.33 - - [09/Apr/2019 15:50:25] "GET /web/database/selector HTTP/1.1" 200 -
+2019-04-09 15:50:33,859 1 INFO None openerp.service.db: Create database `test`.
+2019-04-09 15:50:34,885 1 INFO test openerp.modules.loading: loading 1 modules...
+2019-04-09 15:50:34,970 1 INFO test openerp.modules.module: module base: creating or updating database tables
+2019-04-09 15:50:35,493 1 INFO test openerp.models: Computing parent left and right for table ir_ui_menu...
+2019-04-09 15:50:37,723 1 INFO test openerp.models: Computing parent left and right for table res_partner_category...
+2019-04-09 15:50:39,118 1 INFO test openerp.models: storing computed values of fields.function 'model_data_id'
+2019-04-09 15:50:39,119 1 INFO test openerp.models: storing computed values of fields.function 'report_file'
+2019-04-09 15:50:39,119 1 INFO test openerp.models: storing computed values of fields.function 'crud_model_name'
+2019-04-09 15:50:39,119 1 INFO test openerp.models: storing computed values of fields.function 'wkf_model_name'
+2019-04-09 15:50:39,120 1 INFO test openerp.models: storing computed values of fields.function 'res_name'
+2019-04-09 15:50:39,120 1 INFO test openerp.models: storing computed values of fields.function 'global'
+2019-04-09 15:50:39,121 1 INFO test openerp.models: storing computed values of fields.function 'menus_by_module'
+2019-04-09 15:50:39,313 1 INFO test openerp.models: storing computed values of fields.function 'views_by_module'
+2019-04-09 15:50:39,414 1 INFO test openerp.models: storing computed values of fields.function 'reports_by_module'
+2019-04-09 15:50:39,519 1 INFO test openerp.models: storing computed values of fields.function 'display_name'
+2019-04-09 15:50:39,522 1 INFO test openerp.models: storing computed values of fields.function 'commercial_partner_id'
+2019-04-09 15:50:39,524 1 INFO test openerp.models: storing computed values of fields.function 'logo_web'
+2019-04-09 15:50:39,527 1 INFO test openerp.models: storing computed values of fields.function 'email'
+2019-04-09 15:50:39,527 1 INFO test openerp.models: storing computed values of fields.function 'phone'
+2019-04-09 15:50:39,528 1 INFO test openerp.models: storing computed values of fields.function 'share'
+2019-04-09 15:50:39,530 1 INFO test openerp.models: Storing computed values of res.partner.bank fields sanitized_acc_number
+2019-04-09 15:50:39,536 1 INFO test openerp.modules.loading: loading base/base_data.xml
+2019-04-09 15:50:39,893 1 INFO test openerp.modules.loading: loading base/res/res_currency_data.xml
+2019-04-09 15:50:40,528 1 INFO test openerp.modules.loading: loading base/res/res_country_data.xml
+2019-04-09 15:50:44,263 1 INFO test openerp.modules.loading: loading base/security/base_security.xml
+2019-04-09 15:50:44,554 1 INFO test openerp.modules.loading: loading base/base_menu.xml
+2019-04-09 15:50:44,798 1 INFO test openerp.modules.loading: loading base/res/res_config.xml
+2019-04-09 15:50:44,846 1 INFO test openerp.modules.loading: loading base/res/res.country.state.csv
+2019-04-09 15:50:45,109 1 INFO test openerp.modules.loading: loading base/ir/ir_actions.xml
+2019-04-09 15:50:45,683 1 INFO test openerp.modules.loading: loading base/ir/ir_config_parameter_view.xml
+2019-04-09 15:50:45,787 1 INFO test openerp.modules.loading: loading base/ir/ir_cron_view.xml
+2019-04-09 15:50:45,938 1 INFO test openerp.modules.loading: loading base/ir/ir_filters.xml
+2019-04-09 15:50:46,107 1 INFO test openerp.modules.loading: loading base/ir/ir_mail_server_view.xml
+2019-04-09 15:50:46,256 1 INFO test openerp.modules.loading: loading base/ir/ir_model_view.xml
+2019-04-09 15:50:46,998 1 INFO test openerp.modules.loading: loading base/ir/ir_attachment_view.xml
+2019-04-09 15:50:47,121 1 INFO test openerp.modules.loading: loading base/ir/ir_rule_view.xml
+2019-04-09 15:50:47,251 1 INFO test openerp.modules.loading: loading base/ir/ir_sequence_view.xml
+2019-04-09 15:50:47,364 1 INFO test openerp.modules.loading: loading base/ir/ir_translation_view.xml
+2019-04-09 15:50:47,484 1 INFO test openerp.modules.loading: loading base/ir/ir_ui_menu_view.xml
+2019-04-09 15:50:47,605 1 INFO test openerp.modules.loading: loading base/ir/ir_ui_view_view.xml
+2019-04-09 15:50:47,843 1 INFO test openerp.modules.loading: loading base/ir/ir_values_view.xml
+2019-04-09 15:50:48,063 1 INFO test openerp.modules.loading: loading base/ir/ir_autovacuum.xml
+2019-04-09 15:50:48,078 1 INFO test openerp.modules.loading: loading base/ir/ir_model_report.xml
+2019-04-09 15:50:48,127 1 INFO test openerp.modules.loading: loading base/ir/report_ir_model.xml
+2019-04-09 15:50:48,175 1 INFO test openerp.modules.loading: loading base/ir/ir_logging_view.xml
+2019-04-09 15:50:48,344 1 INFO test openerp.modules.loading: loading base/ir/ir_qweb.xml
+2019-04-09 15:50:48,387 1 INFO test openerp.modules.loading: loading base/workflow/workflow_view.xml
+2019-04-09 15:50:49,288 1 INFO test openerp.modules.loading: loading base/module/module_view.xml
+2019-04-09 15:50:49,716 1 INFO test openerp.modules.loading: loading base/module/module_data.xml
+2019-04-09 15:50:50,202 1 INFO test openerp.modules.loading: loading base/module/module_report.xml
+2019-04-09 15:50:50,220 1 INFO test openerp.modules.loading: loading base/module/report/report_ir_module_reference.xml
+2019-04-09 15:50:50,249 1 INFO test openerp.modules.loading: loading base/module/wizard/base_module_update_view.xml
+2019-04-09 15:50:50,294 1 INFO test openerp.modules.loading: loading base/module/wizard/base_language_install_view.xml
+2019-04-09 15:50:50,340 1 INFO test openerp.modules.loading: loading base/module/wizard/base_import_language_view.xml
+2019-04-09 15:50:50,395 1 INFO test openerp.modules.loading: loading base/module/wizard/base_module_upgrade_view.xml
+2019-04-09 15:50:50,473 1 INFO test openerp.modules.loading: loading base/module/wizard/base_module_configuration_view.xml
+2019-04-09 15:50:50,500 1 INFO test openerp.modules.loading: loading base/module/wizard/base_export_language_view.xml
+2019-04-09 15:50:50,549 1 INFO test openerp.modules.loading: loading base/module/wizard/base_update_translations_view.xml
+2019-04-09 15:50:50,595 1 INFO test openerp.modules.loading: loading base/module/wizard/base_module_immediate_install.xml
+2019-04-09 15:50:50,615 1 INFO test openerp.modules.loading: loading base/res/res_company_view.xml
+2019-04-09 15:50:50,727 1 INFO test openerp.modules.loading: loading base/res/res_request_view.xml
+2019-04-09 15:50:50,837 1 INFO test openerp.modules.loading: loading base/res/res_lang_view.xml
+2019-04-09 15:50:50,934 1 INFO test openerp.modules.loading: loading base/res/res_partner_view.xml
+2019-04-09 15:50:51,467 1 INFO test openerp.modules.loading: loading base/res/res_bank_view.xml
+2019-04-09 15:50:51,685 1 INFO test openerp.modules.loading: loading base/res/res_country_view.xml
+2019-04-09 15:50:52,052 1 INFO test openerp.modules.loading: loading base/res/res_currency_view.xml
+2019-04-09 15:50:52,261 1 INFO test openerp.modules.loading: loading base/res/res_users_view.xml
+2019-04-09 15:50:52,836 1 INFO test openerp.modules.loading: loading base/res/res_partner_data.xml
+2019-04-09 15:50:52,867 1 INFO test openerp.modules.loading: loading base/res/ir_property_view.xml
+2019-04-09 15:50:52,966 1 INFO test openerp.modules.loading: loading base/res/res_security.xml
+2019-04-09 15:50:53,002 1 INFO test openerp.modules.loading: loading base/security/ir.model.access.csv
+2019-04-09 15:50:55,252 1 INFO test openerp.addons.base.ir.ir_translation: module base: loading base translation file en for language en_US
+2019-04-09 15:50:55,252 1 INFO test openerp.tools.translate: loading /usr/lib/python2.7/dist-packages/openerp/addons/base/i18n/en.po
+2019-04-09 15:50:57,167 1 INFO test openerp.modules.loading: 1 modules loaded in 22.28s, 8 queries
+2019-04-09 15:50:57,231 1 INFO test openerp.modules.loading: loading 14 modules...
+2019-04-09 15:50:57,333 1 INFO test openerp.modules.module: module auth_crypt: creating or updating database tables
+2019-04-09 15:50:57,367 1 INFO test openerp.addons.auth_crypt.auth_crypt: Hashing passwords, may be slow for databases with many users...
+2019-04-09 15:50:57,570 1 INFO test openerp.modules.module: module web: creating or updating database tables
+2019-04-09 15:50:57,573 1 INFO test openerp.modules.loading: loading web/views/webclient_templates.xml
+2019-04-09 15:50:58,050 1 INFO test openerp.modules.module: module base_import: creating or updating database tables
+2019-04-09 15:50:58,818 1 INFO test openerp.modules.loading: loading base_import/security/ir.model.access.csv
+2019-04-09 15:50:59,113 1 INFO test openerp.modules.loading: loading base_import/views/base_import.xml
+2019-04-09 15:50:59,290 1 INFO test openerp.modules.module: module report: creating or updating database tables
+2019-04-09 15:50:59,479 1 INFO test openerp.modules.loading: loading report/views/layouts.xml
+2019-04-09 15:50:59,719 1 INFO test openerp.modules.loading: loading report/views/views.xml
+2019-04-09 15:51:00,002 1 INFO test openerp.modules.loading: loading report/data/report_paperformat.xml
+2019-04-09 15:51:00,021 1 INFO test openerp.modules.loading: loading report/security/ir.model.access.csv
+2019-04-09 15:51:00,078 1 INFO test openerp.modules.loading: loading report/views/report.xml
+2019-04-09 15:51:00,415 1 INFO test openerp.modules.module: module web_calendar: creating or updating database tables
+2019-04-09 15:51:00,417 1 INFO test openerp.modules.loading: loading web_calendar/views/web_calendar.xml
+2019-04-09 15:51:00,624 1 INFO test openerp.modules.module: module web_diagram: creating or updating database tables
+2019-04-09 15:51:00,627 1 INFO test openerp.modules.loading: loading web_diagram/views/web_diagram.xml
+2019-04-09 15:51:00,850 1 INFO test openerp.modules.module: module web_editor: creating or updating database tables
+2019-04-09 15:51:01,072 1 INFO test openerp.modules.loading: loading web_editor/security/ir.model.access.csv
+2019-04-09 15:51:01,109 1 INFO test openerp.modules.loading: loading web_editor/views/editor.xml
+2019-04-09 15:51:01,288 1 INFO test openerp.modules.loading: loading web_editor/views/iframe.xml
+2019-04-09 15:51:01,351 1 INFO test openerp.modules.loading: loading web_editor/views/snippets.xml
+2019-04-09 15:51:01,586 1 INFO test openerp.modules.module: module web_kanban: creating or updating database tables
+2019-04-09 15:51:01,589 1 INFO test openerp.modules.loading: loading web_kanban/views/web_kanban.xml
+2019-04-09 15:51:01,793 1 INFO test openerp.modules.module: module web_planner: creating or updating database tables
+2019-04-09 15:51:01,860 1 INFO test openerp.modules.loading: loading web_planner/security/ir.model.access.csv
+2019-04-09 15:51:01,932 1 INFO test openerp.modules.loading: loading web_planner/security/web_planner_security.xml
+2019-04-09 15:51:01,970 1 INFO test openerp.modules.loading: loading web_planner/views/web_planner_templates.xml
+2019-04-09 15:51:02,148 1 INFO test openerp.modules.loading: loading web_planner/views/web_planner_views.xml
+2019-04-09 15:51:02,254 1 INFO test openerp.addons.base.ir.ir_translation: module web_planner: loading translation file (en_US) for language en_US
+2019-04-09 15:51:02,254 1 INFO test openerp.tools.translate: loading /usr/lib/python2.7/dist-packages/openerp/addons/web_planner/i18n/en_US.po
+2019-04-09 15:51:02,490 1 INFO test openerp.modules.module: module web_tip: creating or updating database tables
+2019-04-09 15:51:02,591 1 INFO test openerp.modules.loading: loading web_tip/security/ir.model.access.csv
+2019-04-09 15:51:02,616 1 INFO test openerp.modules.loading: loading web_tip/views/tip.xml
+2019-04-09 15:51:02,681 1 INFO test openerp.modules.loading: loading web_tip/web_tip_view.xml
+2019-04-09 15:51:02,793 1 INFO test openerp.modules.loading: loading web_tip/web_tip_data.xml
+2019-04-09 15:51:02,987 1 INFO test openerp.modules.module: module web_view_editor: creating or updating database tables
+2019-04-09 15:51:02,989 1 INFO test openerp.modules.loading: loading web_view_editor/views/web_view_editor.xml
+2019-04-09 15:51:03,177 1 INFO test openerp.modules.module: module web_kanban_gauge: creating or updating database tables
+2019-04-09 15:51:03,179 1 INFO test openerp.modules.loading: loading web_kanban_gauge/views/web_kanban_gauge.xml
+2019-04-09 15:51:03,474 1 INFO test openerp.modules.module: module web_settings_dashboard: creating or updating database tables
+2019-04-09 15:51:03,508 1 INFO test openerp.addons.auth_crypt.auth_crypt: Hashing passwords, may be slow for databases with many users...
+2019-04-09 15:51:03,511 1 INFO test openerp.modules.loading: loading web_settings_dashboard/views/dashboard_views.xml
+2019-04-09 15:51:03,541 1 INFO test openerp.modules.loading: loading web_settings_dashboard/views/dashboard_templates.xml
+2019-04-09 15:51:03,640 1 INFO test openerp.modules.loading: 14 modules loaded in 6.41s, 0 queries
+2019-04-09 15:51:03,889 1 INFO test openerp.modules.loading: Modules loaded.
+2019-04-09 15:51:03,890 1 INFO test openerp.models: Computing parent left and right for table ir_ui_menu...
+2019-04-09 15:51:03,933 1 INFO test openerp.addons.base.ir.ir_translation: module base: loading base translation file en for language en_US
+2019-04-09 15:51:03,934 1 INFO test openerp.tools.translate: loading /usr/lib/python2.7/dist-packages/openerp/addons/base/i18n/en.po
+2019-04-09 15:51:03,948 1 INFO test openerp.addons.base.ir.ir_translation: module web_planner: loading translation file (en_US) for language en_US
+2019-04-09 15:51:03,948 1 INFO test openerp.tools.translate: loading /usr/lib/python2.7/dist-packages/openerp/addons/web_planner/i18n/en_US.po
+2019-04-09 15:51:04,226 1 INFO test werkzeug: 192.228.249.33 - - [09/Apr/2019 15:51:04] "POST /web/database/create HTTP/1.1" 303 -
+2019-04-09 15:51:04,257 1 WARNING ? openerp.http: Logged into database 'test', but dbfilter rejects it; logging session out.
+2019-04-09 15:51:04,273 1 INFO ? werkzeug: 192.228.249.33 - - [09/Apr/2019 15:51:04] "GET /web/ HTTP/1.1" 303 -
+2019-04-09 15:51:04,311 1 WARNING ? openerp.http: Logged into database 'test', but dbfilter rejects it; logging session out.
+2019-04-09 15:51:04,358 1 INFO ? werkzeug: 192.228.249.33 - - [09/Apr/2019 15:51:04] "GET /web/database/selector HTTP/1.1" 200 -
+2019-04-09 15:51:22,599 1 INFO db_demomy openerp.service.server: Initiating shutdown
+2019-04-09 15:51:22,599 1 INFO db_demomy openerp.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+2019-04-09 15:51:37,176 1 INFO ? openerp: OpenERP version 9.0c-20180808
+2019-04-09 15:51:37,176 1 INFO ? openerp: addons paths: ['/var/lib/odoo/addons/9.0', u'/mnt/extra-addons', '/usr/lib/python2.7/dist-packages/openerp/addons']
+2019-04-09 15:51:37,176 1 INFO ? openerp: database: admin@db:5432
+2019-04-09 15:51:37,528 1 INFO ? openerp.service.server: HTTP service (werkzeug) running on a68d649c6b72:8069
+2019-04-09 15:51:37,560 1 INFO db_demomy openerp.modules.loading: loading 1 modules...
+2019-04-09 15:51:37,570 1 INFO db_demomy openerp.modules.loading: 1 modules loaded in 0.01s, 0 queries
+2019-04-09 15:51:37,782 1 INFO db_demomy openerp.modules.loading: loading 14 modules...
+2019-04-09 15:51:37,864 1 INFO db_demomy openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2019-04-09 15:51:37,947 1 INFO db_demomy openerp.modules.loading: 14 modules loaded in 0.16s, 0 queries
+2019-04-09 15:51:38,181 1 INFO db_demomy openerp.modules.loading: Modules loaded.
+2019-04-09 15:51:53,719 1 INFO ? openerp.addons.bus.models.bus: Bus.loop listen imbus on db postgres
+2019-04-09 15:51:55,060 1 INFO ? openerp.http: HTTP Configuring static files
+2019-04-09 15:51:55,067 1 INFO ? openerp.http: Generating nondb routing
+2019-04-09 15:51:55,080 1 INFO ? werkzeug: 192.228.249.33 - - [09/Apr/2019 15:51:55] "GET / HTTP/1.1" 200 -
+2019-04-09 15:51:55,466 1 INFO ? werkzeug: 192.228.249.33 - - [09/Apr/2019 15:51:55] "GET /web HTTP/1.1" 303 -
+2019-04-09 15:51:55,610 1 INFO ? werkzeug: 192.228.249.33 - - [09/Apr/2019 15:51:55] "GET /web/database/selector HTTP/1.1" 200 -
+2019-04-09 15:52:34,095 1 INFO db_demomy openerp.service.server: Initiating shutdown
+2019-04-09 15:52:34,095 1 INFO db_demomy openerp.service.server: Hit CTRL-C again or send a second signal to force the shutdown.

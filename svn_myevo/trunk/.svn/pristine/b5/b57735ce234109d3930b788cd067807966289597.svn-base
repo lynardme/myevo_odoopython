@@ -1,0 +1,137 @@
+from openerp import models, fields,api
+import xml.etree.ElementTree as ET
+import base64
+from datetime import datetime, timedelta
+
+class common_wizard(models.TransientModel):
+    _name = 'soupese.common_wizard'
+
+    text1 = fields.Char(string='text1')
+    file_name = fields.Char(string='File Name', size=64)
+    file =  fields.Binary('File')
+
+    @api.multi
+    def confirm_export(self):
+        recs = self.env['purchase.order'].search([('id', 'in', self._context.get('active_ids'))])
+        # for rec in recs:
+        #     # po master data
+        #     po = ET.SubElement(root, "order", id=str(rec['id']))
+        #     ET.SubElement(po, "po_no").text = str(rec['name'])
+        #     ET.SubElement(po, "date_order").text = str(rec['date_order'])
+        #     ET.SubElement(po, "ref1").text = str(rec['pda_do_id'])
+
+        #     # supplier address
+        #     ET.SubElement(po, "supplier").text = str(rec['partner_id'].name or '')
+        #     ET.SubElement(po, "supplier_street").text = str(rec['partner_id'].street or '')
+        #     ET.SubElement(po, "supplier_city").text = str(rec['partner_id'].city or '')
+
+        #     # purchase order line
+        #     lines = self.env['purchase.order.line'].search([('order_id', '=', rec['id'])])
+        #     for line in lines:
+        #         po_line = ET.SubElement(po, "order_line", id=str(line['id']))
+        #         ET.SubElement(po_line, "item_code").text = str(line['product_id'].id)
+        #         ET.SubElement(po_line, "description").text = str(line['product_id'].name_template)
+        #         ET.SubElement(po_line, "quantity").text = str(line['product_qty'])
+        #         ET.SubElement(po_line, "uom").text = str(line['product_uom'].name)
+        #         ET.SubElement(po_line, "unit_price").text = str(line['price_unit'] or '')
+        #         subtotal = line['price_unit'] * line['crate_net']
+        #         ET.SubElement(po_line, "subtotal").text = str(subtotal or '')
+        #         ET.SubElement(po_line, "buyer_id").text = str(line['buyer_id'] or '')
+        #         ET.SubElement(po_line, "buyer").text = str(line['buyer'] or '')
+
+        datapacket = ET.Element("DATAPACKET", Version="2.0")
+        metadata = ET.SubElement(datapacket, "METADATA")
+        rowdata = ET.SubElement(datapacket, "ROWDATA")
+        
+        for rec in recs:
+            row = ET.SubElement(rowdata, "ROW", 
+                DOCKEY="24", 
+                DOCNO=rec['name'], 
+                DOCNOEX='', 
+                DOCDATE=rec['date_order'], 
+                POSTDATE=rec['date_order'], 
+                TAXDATE='',
+                CODE=str(rec['id']),
+                COMPANYNAME=str(rec['partner_id'].name or ''),
+                ADDRESS1=str(rec['partner_id'].street or ''),
+                ADDRESS2=str(rec['partner_id'].city or ''),
+                ADDRESS3='',
+                PHONE1='',
+                FAX1='',
+                ATTENTION='',
+                AREA='',
+                AGENT='',
+                PROJECT='',
+                TERMS='',
+                CURRENCYCODE='',
+                CURRENCYRATE='',
+                SHIPPER='',
+                DESCRIPTION='',
+                CANCELLED='',
+                DOCAMT='',
+                LOCALDOCAMT='',
+                D_BANKCHARGE='',
+                D_AMOUNT='',
+                DOCREF1=str(rec['pda_do_id']),
+                BRANCHNAME='',
+                DADDRESS1='',
+                TRANSFERABLE='',
+                PRINTCOUNT='',
+                DOCNOSETKEY='',
+                CHANGED=''
+                )
+            sdsdocdetail = ET.SubElement(row, "sdsDocDetail")
+            lines = self.env['purchase.order.line'].search([('order_id', '=', rec['id'])])
+            seq=1
+            for line in lines:
+                ET.SubElement(sdsdocdetail, "ROWsdsDocDetail",
+                    DTLKEY='',
+                    DOCKEY='',
+                    SEQ=str(seq),
+                    ITEMCODE=str(line['product_id'].id),
+                    LOCATION='',
+                    BATCH='',
+                    PROJECT='',
+                    DESCRIPTION=str(line['product_id'].name_template),
+                    QTY=str(line['product_qty']),
+                    UOM=str(line['product_uom'].name),
+                    RATE='',
+                    SQTY='',
+                    SUOMQTY='',
+                    OFFSETQTY='',
+                    UNITPRICE=str(line['price_unit'] or ''),
+                    DELIVERYDATE='',
+                    DISC='',
+                    TAX='',
+                    TAXAMT='',
+                    LOCALTAXAMT='',
+                    TAXINCLUSIVE='',
+                    AMOUNT='',
+                    LOCALAMOUNT='',
+                    PRINTABLE='',
+                    TRANSFERABLE='',
+                    CHANGED=''
+                    )
+                seq+=1
+
+        #Get xml string with declaration
+        datas = ET.tostring(datapacket, encoding='UTF-8', method='xml')
+
+        # print etree.tostring(root)
+        soupese = self.env['soupese.common_wizard']
+        wizard_rec = soupese.create({'file_name': 'purchase_order.xml', 
+                                     'file': base64.encodestring(datas)})
+
+        view_id = self.env['ir.model.data'].get_object_reference('soupese_base', 'post_export_view')[1]
+        message = 'finally'
+        return {
+            'name':'Export to XML',
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'soupese.common_wizard',
+            'view_id': view_id,
+            'res_id': wizard_rec.id,
+            'target': 'new',
+            'context': {},
+            }

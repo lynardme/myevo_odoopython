@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--suppress CheckTagEmptyBody -->
+<templates id="template" xml:space="preserve">
+
+	<!-- 
+	Remove all user context menu (on top right corner) except Log out
+	PS: I need About option for development purpose
+	TODO: Remove About when development is finished
+	-->
+	<t t-extend="UserMenu" >
+		<t t-jquery="ul.dropdown-menu" t-operation="replace">
+			<ul class="dropdown-menu">
+<!-- 
+				<li><a href="#" data-menu="about">About</a></li>
+ -->
+				<li><a href="#" data-menu="profile">Profile</a></li>
+				<li><a href="#" data-menu="logout">Log out</a></li>
+			</ul>
+		</t>
+	</t>
+
+    <!-- Remove all systray icon, including Chat, Inbox and Channels -->
+	<t t-extend="mail.chat.MessagingMenu">
+		<t t-jquery="li.o_mail_navbar_item" t-operation="replace"></t>
+	</t>
+	<t t-extend="mail.chat.InboxItem">
+		<t t-jquery="li.o_mail_navbar_item" t-operation="replace"></t>
+	</t>
+
+	<t t-extend="mail.chat.ControlButtons">
+		<t t-jquery="div" t-operation="replace">
+			<div>
+				<button type="button" class="btn btn-primary btn-sm o_mail_toggle_channels visible-xs-inline" title="Toggle Channels">Channels</button>
+				<button type="button" class="btn btn-primary btn-sm o_mail_chat_button_invite" title="Invite people">Invite</button>
+				<button type="button" class="btn btn-primary btn-sm o_mail_chat_button_mark_read" title="Mark all as read">Mark all read</button>
+				<button type="button" class="btn btn-primary btn-sm o_mail_chat_button_unstar_all" title="Unstar all messages">Unstar all</button>
+				<button type="button" class="btn btn-default btn-sm o_mail_chat_button_unsubscribe" title="Unsubscribe from channel">Unsubscribe</button>
+				<button type="button" class="btn btn-default btn-sm o_mail_chat_button_settings" title="Open channel settings">Settings</button>
+			</div>
+		</t>
+	</t>
+
+    <!-- Remove "Odoo needs your permission..." -->
+    <t t-extend="mail.client_action">
+		<t t-jquery=".o_mail_request_permission" t-operation="replace">
+            <span class="o_mail_request_permission">Soupèse needs your permission to <a href="#"> enable desktop notifications</a>.</span>
+        </t>
+	</t>
+
+    <!-- Remove Odoo instances in Settings -->
+    <t t-extend="DashboardShare">
+		<t t-jquery="*" t-operation="replace"></t>
+	</t>
+    <t t-extend="DashboardEnterprise">
+		<t t-jquery="*" t-operation="replace"></t>
+	</t>
+    <t t-extend="DashboardPlanner">
+		<t t-jquery="*" t-operation="replace"></t>
+	</t>
+
+</templates>

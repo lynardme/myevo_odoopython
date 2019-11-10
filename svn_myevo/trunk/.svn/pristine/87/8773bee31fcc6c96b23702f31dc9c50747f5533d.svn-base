@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="pda_api_form_view" model="ir.ui.view">
+		    <field name="name">soupese_base.pda_api_form</field>
+		    <field name="model">pda.api</field>
+		    <field name="arch" type="xml">
+                <form string="General Settings" class="oe_form_pda_api">
+                    <header>
+                        <button string="Apply" type="object" name="execute" class="oe_highlight"/>
+                        <button string="Cancel" type="object" name="cancel" class="oe_link"/>
+                    </header>
+                    <div class="col-xs-6 pull-left">
+                    <separator string="PDA Settings"/>
+                    <group>	
+			        	<group>		        	
+							<field name="db_name" onchange="0"/>
+							<field name="url_path" onchange="0"/>
+							<field name="user_name" onchange="0"/>
+							<field name="admin_pass" password="True" onchange="0"/>						
+						</group>
+						<group>
+						</group>				
+					</group>
+					</div>
+					
+					<div class="col-xs-6 pull-right">	
+					<separator string="XML RPC for Service"/>
+                    <group>	
+			        	<group>		        	
+							<field name="database_name"/>
+							<field name="url_name"/>
+							<field name="username"/>
+							<field name="password"/>						
+						</group>
+						<group>
+						</group>				
+					</group>
+					</div>
+		        </form>
+		    </field>
+		</record>
+
+		<!-- Action Window Definition -->
+		<record id="action_pda_api" model="ir.actions.act_window">
+		    <field name="name">PDA Settings</field>
+		    <field name="res_model">pda.api</field>
+		    <field name="view_type">form</field>
+		    <field name="view_mode">form</field>
+		    <field name="target">inline</field>
+		</record>
+
+		<!-- Action Menu Item Related To Above Action Window -->	
+		<!--<menuitem 
+			action="action_pda_api" 
+			id="action_menu_pda_api"
+			parent="base.menu_config"
+			name="PDA Settings"
+			groups="base.group_no_one"		
+			sequence="2"
+			/>-->		
+		
+		<!-- This Menu Exist, Just Moved to Sub Menu Under General Settings -->
+        <record id="action_general_configuration" model="ir.actions.act_window">
+            <field name="name">General Settings</field>
+            <field name="res_model">base.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+        </record>
+        <menuitem 
+	        id="action_menu_config" 
+	        name="General Settings" 
+	    	parent="base.menu_config" 
+	        sequence="1"
+			groups="base.group_no_one"        
+	        action="action_general_configuration"
+        	/>
+        
+		<record id="view_users_api_form" model="ir.ui.view">
+            <field name="name">res.users.api.form</field>
+            <field name="model">res.users</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='access_rights']" position="after">
+                    <page string="API">
+                        <group>
+                            <field name="token"/>
+                        </group>
+                        <group>
+                        	<button string="Generate Key" name="get_token" context="{}" type="object" class="oe_highlight"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='history_api_tree'>
+            <field name="name">history_appi.tree</field>
+            <field name="model">pda.history</field>
+            <field name="arch" type="xml">
+            	<tree string="History" default_order="id desc">
+					<field name="access_date"/>
+                    <field name="url_loc" widget="url"/>
+					<field name="info"/>
+            	</tree>
+            </field>
+        </record>
+
+        <record model='ir.ui.view' id='history_api_form'>
+            <field name="name">history.api.form</field>
+            <field name="model">pda.history</field>
+            <field name="arch" type="xml">
+                <form string="History" default_order="id desc">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="owner_id"/>
+                            <field name="access_date"/>
+                            <field name="last_position_long"/>
+                            <field name="last_position_latt"/>
+                        </group>
+                        <group>
+                            <field name="url_loc" widget="url"/>
+                            <field name="info"/>
+                            <field name="data"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+        <record id="view_history_api_form" model="ir.ui.view">
+            <field name="name">history.api</field>
+            <field name="model">pda.operation</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="soupese_base.view_form_pda_id"/>
+            <field name="arch" type="xml">
+            	<xpath expr="/form/sheet/group" position="after"> 
+            		<notebook>
+						<page string="History">
+							<field name="pda_history_ids" readonly="1"/> 
+						</page>
+					</notebook>
+            	</xpath>
+           	</field>
+        </record>
+
+        <record id="pda_operation_lorry_form" model="ir.ui.view">
+            <field name="name">pda.operation.lorry.form</field>
+            <field name="model">pda.operation</field>
+            <field name="inherit_id" ref="soupese_base.view_form_pda_id"/>
+            <field name="groups_id" eval="[(6, 0, [ref('soupese_base.po_f_access_user')])]"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='lorry_id']" position="attributes">
+            		<attribute name='invisible'>1</attribute>
+            	</xpath>
+           	</field>
+        </record>
+
+        <record id="pda_operation_data_admin" model="ir.ui.view">
+            <field name="name">pda.operation.lorry.form</field>
+            <field name="model">pda.operation</field>
+            <field name="inherit_id" ref="soupese_base.view_form_pda_id"/>
+            <field name="groups_id" eval="[(6, 0, [ref('soupese_base.po_f_access_data_manager')])]"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='pda_id']" position="attributes">
+            		<attribute name='readonly'>1</attribute>
+            	</xpath>
+            	<xpath expr="//field[@name='name']" position="attributes">
+            		<attribute name='readonly'>1</attribute>
+            	</xpath>
+            	<xpath expr="//field[@name='installation']" position="attributes">
+            		<attribute name='readonly'>1</attribute>
+            	</xpath>
+            	<xpath expr="//field[@name='app_version']" position="attributes">
+            		<attribute name='readonly'>1</attribute>
+            	</xpath>
+           	</field>
+        </record>
+                   
+	</data>
+</openerp>
+
+
+
+

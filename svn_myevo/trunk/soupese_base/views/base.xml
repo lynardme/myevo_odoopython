@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--suppress XmlPathReference -->
+<openerp>
+    <data>
+
+        <!-- Hide Manage Databases link -->
+        <template id="myevolution_login_layout" inherit_id="web.login_layout" name="MyEvolution Login">
+            <xpath expr="//div[@class='row']" position="replace">
+                <div class="row">
+                  <div class="col-md-6 col-md-offset-3 o_database_list">
+                    <div class="text-center">
+                      <img t-attf-src="/web/binary/company_logo{{ '?dbname='+db if db else '' }}"/>
+                    </div>
+                    <t t-raw="0"/>
+                  </div>
+                </div>
+            </xpath>
+        </template>
+
+        <!-- Remove Powered by Odoo text -->
+        <template id="remove_odoo_branding" inherit_id="web.menu_secondary" name="Remove Odoo branding">
+            <xpath expr="//div[@class='oe_footer']" position="replace">
+            </xpath>
+        </template>
+
+        <template id="new_title_bar" inherit_id="web.layout" name="New Title Bar">
+            <xpath expr="//head//link" position="after">
+                <link rel="shortcut icon" href="/soupese_base/static/src/img/favicon.ico" type="image/x-icon"/>
+            </xpath>
+            <xpath expr="//title" position="replace">
+                <title>Soupèse</title>
+            </xpath>
+        </template>
+
+		<template id="assets_backend" name="soupese_base assets" inherit_id="web.assets_backend">
+			<xpath expr="." position="inside">
+				<script type="text/javascript" src="/soupese_base/static/src/js/title.js"></script>
+				<script type="text/javascript" src="/soupese_base/static/src/js/widgets/profile_menu_custom.js"></script>
+                <script type="text/javascript" src="/soupese_base/static/src/js/views/pivot_view.js"></script>
+			</xpath>
+		</template>
+
+    </data>
+</openerp>

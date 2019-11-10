@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+
+  app:
+    image: odoo:9
+    container_name: myevo_app
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+    volumes:
+      - app-data:/var/lib/odoo
+      - ./svn_myevo/trunk:/mnt/extra-addons
+      - ./tmp:/tmp
+#      - ./config:/etc/odoo
+#      - ./log:/var/log/odoo
+    environment:
+      - PYTHONUNBUFFERED=1
+      - USER=admin
+      - PASSWORD=dadgum477
+    command: openerp-server -d db_demomy -u soupese_base 
+
+  db:
+    image: postgres:9.5.10
+    container_name: myevo_db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=dadgum477
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - db-data:/var/lib/postgresql/data/pgdata
+
+volumes:
+  app-data:
+  db-data:
+

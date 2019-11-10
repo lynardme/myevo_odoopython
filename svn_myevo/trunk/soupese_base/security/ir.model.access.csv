@@ -1,0 +1,29 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pda_api_user,user,soupese_base.model_pda_api,base.group_sale_salesman_all_leads,1,1,1,0
+access_pda_api_manager,manager,soupese_base.model_pda_api,base.group_sale_manager,1,1,1,1
+access_pda_api_salesman,salesman,soupese_base.model_pda_api,base.group_sale_salesman,1,1,1,0
+access_pda_history_s_user,access_pda_history_s_user,soupese_base.model_pda_history,base.group_sale_salesman,1,1,1,0
+access_pda_history_p_user,access_pda_history_p_user,soupese_base.model_pda_history,purchase.group_purchase_user,1,1,1,0
+access_pda_history_sm,access_pda_history_sm,soupese_base.model_pda_history,base.group_sale_manager,1,1,1,1
+access_pda_history_pm,access_pda_history_pm,soupese_base.model_pda_history,purchase.group_purchase_manager,1,1,1,1
+access_measure_scale_user,user,soupese_base.model_measure_scale,purchase.group_purchase_user,1,0,0,0
+access_measure_scale_manager,manager,soupese_base.model_measure_scale,purchase.group_purchase_manager,1,1,1,1
+access_pda_operation_user,user,soupese_base.model_pda_operation,purchase.group_purchase_user,1,0,0,0
+access_pda_operation_manager,manager,soupese_base.model_pda_operation,purchase.group_purchase_manager,1,1,1,1
+access_lorry_number_user,user,soupese_base.model_lorry_number,purchase.group_purchase_user,1,0,0,0
+access_lorry_number_manager,manager,soupese_base.model_lorry_number,purchase.group_purchase_manager,1,1,1,0
+access_lorry_data_manager,data manager,soupese_base.model_lorry_number,soupese_base.po_f_access_data_manager,1,1,1,1
+access_farm_data_manager,data manager,base.model_res_partner,soupese_base.po_f_access_data_manager,1,1,1,1
+access_pda_id_data_manager,data manager,soupese_base.model_pda_operation,soupese_base.po_f_access_data_manager,1,0,0,0
+access_scale_data_manager,data manager,soupese_base.model_measure_scale,soupese_base.po_f_access_data_manager,1,1,0,0
+access_purchase_order_data_manager,data manager,purchase.model_purchase_order,soupese_base.po_f_access_data_manager,1,0,0,0
+access_product_template_data_manager,data manager,product.model_product_template,soupese_base.po_f_access_data_manager,1,1,1,1
+access_product_product_data_manager,data manager,product.model_product_product,soupese_base.po_f_access_data_manager,1,1,1,1
+access_product_price_history_data_manager,data manager,product.model_product_price_history,soupese_base.po_f_access_data_manager,1,1,1,1
+access_lorry_purchase_person,user,soupese_base.model_lorry_number,soupese_base.po_f_access_user,1,0,0,0
+access_farm_purchase_person,user,base.model_res_partner,soupese_base.po_f_access_user,1,0,0,0
+access_pda_id_purchase_person,user,soupese_base.model_pda_operation,soupese_base.po_f_access_user,1,0,0,0
+access_scale_purchase_person,user,soupese_base.model_measure_scale,soupese_base.po_f_access_user,1,0,0,0
+access_purchase_order_purchase_person,user,purchase.model_purchase_order,soupese_base.po_f_access_user,1,0,0,0
+"base.access_res_partner_group_partner_manager","res_partner group_partner_manager","base.model_res_partner","base.group_partner_manager",1,0,0,0
+"base.access_ir_property_group_user_manager","ir_property group_manager","base.model_ir_property","base.group_partner_manager",1,1,1,1

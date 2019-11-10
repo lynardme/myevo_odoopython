@@ -1,0 +1,46 @@
+[options]
+proxy_mode = True
+list_db = False
+
+; the db_filter will find the proper database name db_<hostname>
+; example http://demomy.soupese.com will go to db_demomy
+dbfilter = ^db_%d$
+
+; LOAD SERVER SIDE MODULES FIRST
+; dbfilter_from_header : will use the virtual host as db_filter
+load = "web, web_kanban, dbfilter_from_header, soupese_base"
+
+
+; This is the password that allows database operations:
+admin_passwd = <to_replace>
+
+; DATABASE SERVER OPTIONS
+db_host = <to_replace>
+db_port = <to_replace>
+db_user = <to_replace>
+db_password = <to_replace>
+
+
+
+; MISC SETTINGS
+addons_path = /opt/odoo/addons,/home/odoo/myevo_odoo_addons
+
+
+;timezone = Europe/London
+;without-demo=all
+; LOG SETTINGS
+logfile = /var/log/odoo/odoo-server.log
+log_handler = werkzeug:INFO,openerp.http.rpc.request:INFO
+log_level = info
+no-logrotate = True
+
+
+; add this to /etc/init.d/odoo
+; daemon --user odoo --check odoo-server \
+;    "~/odoo/bin/python /opt/odoo/openerp-server \
+;    -c /etc/odoo-server.conf \
+;    -u soupese_base
+
+
+
+

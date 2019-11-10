@@ -1,0 +1,69 @@
+#! /bin/sh  
+# chkconfig: 5 95 20
+# description: Start and Stop Oracle Service database
+# What your script does (not sure if this is necessary though)
+# processname: dbora
+#
+
+# PBU : To install this on centors, run :  chkconfig  dbora on
+# Then check it  : chkconfig --list
+# chkconfig odoo_api on
+# service "$NAME" start
+
+USER=odoo
+
+PIDFILE=/var/run/odoo/odoo_api.pid
+LOGFILE=/var/log/odoo/odoo_api.log
+ERRORFILE=/var/log/odoo/odoo_api.error
+
+
+# Check if odoo
+WHO="`whoami`"
+if [ ! "$WHO" = "$USER" ];
+then
+  HERE="`dirname $0`"
+  SCRIPTNAME="`basename $0`"
+  cd $HERE
+  SCRIPT="`pwd`/$SCRIPTNAME"
+  cd -
+  su - $USER -c "$SCRIPT $1"
+  exit
+fi
+
+
+
+
+#
+echo "Run as $USER"
+case $1 in
+'start')
+        if [ -f $PIDFILE ] && kill -0 $(cat $PIDFILE); then
+           echo 'Service already running' >&2
+           exit 1
+        fi
+        
+        echo "Start Required"
+        source odoo/bin/activate 
+        python /home/odoo/myevo_odoo_addons/chicken_api/api.py 5202 >>$LOGFILE 2>>$ERRORFILE &  echo $! 
+        PID=$!
+        echo $PID > $PIDFILE
+        ;;
+'stop')
+        echo "Stop required" 
+        if [ ! -f "$PIDFILE" ] || ! kill -0 $(cat "$PIDFILE"); then
+           echo 'Service not running' >&2
+           exit 1
+        fi
+        echo 'Stopping service.' >&2
+        kill -15 $(cat "$PIDFILE") && rm -f "$PIDFILE"
+        echo 'Service stopped' >&2
+        ;;
+*)
+        echo "usage: $0 {start|stop}"
+        exit
+        ;;
+esac
+#
+exit
+
+

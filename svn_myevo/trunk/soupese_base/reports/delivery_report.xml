@@ -1,0 +1,1073 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="new_delivery_report_document">
+            <t t-call="soupese_base.custom_layout">
+                <t t-foreach="docs" t-as="o">              	
+                    <div class="page">
+                    	<!-- Header part 1 -->  	
+                    	<table width="100%">
+                    		<tr>
+                    			<td>
+									<img t-att-src="'data:image/png;base64,%s' % owner.header_do_report"
+                                     style="max-height:180px;height:180px;max-width:1050px;width:1050px;"/>
+                    			</td>
+                    		</tr>
+                    	</table>
+						<!-- close header part 1 -->
+						
+						<!-- part 2 -->
+                        <p/>
+                        <table border="none" style="width:100%;">
+                            <tr>
+                            	<td width="30%"></td>
+                                <td width="30%" style="text-align:center; vertical-align:bottom;">
+                                    <ul style="list-style: none; font-size:22pt; font-weight: bold;">
+                                        <li>DELIVERY ORDER</li>
+                                    </ul>
+                                </td>
+                                <td width="40%" style="text-align:left;">
+                                    <ul class="list-inline" style="list-style: none;">
+                                        <li style="list-style: none; font-size:22pt; font-weight: bold;">PO ID:
+                                            <span style="font-weight: bold; font-size:22pt;" t-field="o.purch_id.name"/>
+                                        </li>
+                                        <br/>
+                                        <li style="list-style: none; font-size:12pt; font-weight: normal;">Ref:
+                                            <span style="font-weight: normal;" t-field="o.purch_id.pda_do_id"/>
+                                        </li>
+                                    </ul>
+                                </td>                              
+                            </tr>
+                        </table>
+                        <table border="none" style="width:100%;">
+                            <tr>
+                                <td width="60%" style="text-align:left; font-size:14pt; font-weight: normal; ">
+                                    <t t-set="buyers" t-value="list(set(o.purch_id.order_line.mapped('buyer')))"/>
+                                    <t t-set="no_buyers" t-value="False"/>
+                                    <t t-foreach="buyers" t-as="buyers_perline">
+                                        <t t-if="not buyers_perline">
+                                            <t t-set="no_buyers" t-value="True"/>
+                                        </t>
+                                    </t>
+                                    <t t-if="no_buyers == False">
+                                        Delivery To :
+                                        <t t-foreach="buyers" t-as="buyers_perline">
+                                            <span t-esc="buyers_perline"/>
+                                            <span t-if="buyers_perline_last == False">,</span>
+                                        </t>
+                                    </t>
+                                </td>
+                                <td style="text-align: left; font-size: 14pt; font-weight: normal;" width="40%">
+                                    <![CDATA[
+                                        &nbsp;
+                                    ]]>
+                                </td>
+                            </tr>
+                        	<tr>
+	                        	<td width="60%" style="text-align:left; font-size:14pt; font-weight: normal; ">
+	                            	<t t-set="buyers" t-value="list(set(o.purch_id.order_line.mapped('buyer')))"/>
+                                    Batch Id :
+                                    <span style="font-weight: normal;" t-field="o.purch_id.batch_id"/>
+	                        	</td>
+	                        	<td width="40%" style="text-align:left; font-size:14pt; font-weight: normal; ">
+									Date :
+									<span style="font-weight: normal;"
+                                    t-esc="time.strftime('%d/%m/%Y %H:%M:%S',time.strptime(o.purch_id.confirm_date,'%Y-%m-%d %H:%M:%S'))"/>
+	                        	</td>
+                        	</tr>
+                        	<tr>
+                        		<td width="60%" style="text-align:left; font-size:14pt; font-weight: normal; ">
+	                              	From Farm :
+	                                <t style="font-weight: normal;">
+	                                    <span t-field="o.purch_id.partner_id.name"/>
+	                                </t>
+                                </td>
+	                        	<td width="40%" style="text-align:left; font-size:14pt; font-weight: normal; ">
+									Lorry No. :
+									<span style="font-weight: normal;" t-field="o.purch_id.lory_number"/>
+	                        	</td>
+                             </tr>
+                        	<tr>
+	                        	<td width="60%" style="text-align:left; font-size:14pt; font-weight: normal; ">
+									Total Crates :
+                                    <span style="font-weight: bold; font-size: 14pt;" t-field="o.purch_id.total_crates"/>  
+	                        	</td>
+	                        	<td width="40%" style="text-align:left; font-size:14pt; font-weight: normal; ">
+									Average Crate Wt. :
+                                    <span style="font-weight: bold; font-size: 14pt;" t-esc="'{0:,.2f}'.format(float(o.purch_id.avg_cr_w))"/>
+	                        	</td>	                        	
+                        	</tr>
+                        </table>
+                        <br/>
+                        <!-- close part 2 -->
+
+                        <t t-set="summary_lines" t-value="0"/>
+                        <t t-set="buyer_name" t-value="0"/>
+                        <t t-foreach="o.purch_id.order_line.sorted(key=lambda b: b.buyer, reverse=True)" t-as="line">
+                            <t t-if="summary_lines &lt; 5">
+                                <t t-if="buyer_name == 0">
+                                    <t t-set="summary_lines" t-value="1"/>
+                                    <t t-set="buyer_name" t-value="line.buyer"/>
+                                </t>
+                                <t t-if="line.buyer != buyer_name">
+                                    <t t-set="buyer_name" t-value="line.buyer"/>
+                                    <t t-set="summary_lines" t-value="summary_lines + 1"/>
+                                </t>
+                            </t>
+                        </t>
+						
+						<!-- Table in first page -->		
+                        <table width="100%"
+                               style="border-bottom: 1px solid grey; border-top: 1px solid grey; border-right: 1px solid grey; border-left: 1px solid grey;">
+                        	<!-- Header -->
+                            <tr height="8"
+                                style="font-weight:bold; font-size:14pt; background-color:#BADDF7; padding-top: 3px; text-align:center;">
+                                <td width="3%" style="border-right: 1px solid grey; padding-top: 5px;">
+                                    <p>No</p>
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+									<img t-att-src="'/soupese_base/static/src/img/gross_weight.png'" 
+									style="max-height:25px; max-weight:25px"/>     	
+                                    <p>Gross Wt.</p>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+                                    <p>No</p>
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                	<img src="/soupese_base/static/src/img/gross_weight.png" 
+                                	style="max-height:25px; max-weight:25px"/>
+                                    <p>Gross Wt.</p>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+                                    <p>No</p>
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                	<img src="/soupese_base/static/src/img/gross_weight.png" 
+                                	style="max-height:25px; max-weight:25px"/>
+                                    <p>Gross Wt.</p>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+                                    <p>No</p>
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                	<img src="/soupese_base/static/src/img/gross_weight.png" 
+                                	style="max-height:25px; max-weight:25px"/>
+                                    <p>Gross Wt.</p>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+                                    <p>No</p>
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                	<img src="/soupese_base/static/src/img/gross_weight.png" 
+                                	style="max-height:25px; max-weight:25px"/>
+                                    <p>Gross Wt.</p>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+                                    <p>No</p>
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                	<img src="/soupese_base/static/src/img/gross_weight.png" 
+                                	style="max-height:25px; max-weight:25px"/>
+                                    <p>Gross Wt.</p>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+                                    <p>No</p>
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                	<img src="/soupese_base/static/src/img/gross_weight.png" 
+                                	style="max-height:25px; max-weight:25px"/>
+                                    <p>Gross Wt.</p>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+                                    <p>No</p>
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                	<img src="/soupese_base/static/src/img/gross_weight.png" 
+                                	style="max-height:25px; max-weight:25px"/>
+                                    <p>Gross Wt.</p>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+                                    <p>No</p>
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                	<img src="/soupese_base/static/src/img/gross_weight.png" 
+                                	style="max-height:25px; max-weight:25px"/>
+                                    <p>Gross Wt.</p>
+                                </td>
+                                <!--
+                                <td width="3%" style="border-right: 1px solid grey;">
+                                    <p>No</p>
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                	毛重
+                                    <p>Gross weight (Kg)</p>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+                                    <p>No</p>
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                	毛重
+                                    <p>Gross weight (Kg)</p>
+                                </td>
+								-->                                
+                            </tr>
+                            <!-- close header -->
+                            
+                            <t t-set="rec_num" t-value="0"/>
+                            <t t-set="num" t-value="1"/>
+                            <t t-set="total_rec" t-value="len(o.purch_id.order_line)"/>
+                            <t t-set="add_row" t-value="5 - summary_lines"/>
+                            <t t-set="page_total_rec" t-value="180"/>
+                            <t t-if="total_rec &lt;= page_total_rec">
+                                <t t-set="max_row" t-value="20"/>
+                            </t>
+                            <t t-set="page_total_rec" t-value="180"/>
+                            <t t-if="total_rec &gt; page_total_rec">
+                                <t t-set="max_row" t-value="20"/>
+                            </t>
+                            <!--
+                            <t t-set="page_total_rec" t-value="270"/>
+                            <t t-if="total_rec &gt; page_total_rec">
+                                <t t-set="max_row" t-value="40"/>
+                            </t>
+                            <t t-set="page_total_rec" t-value="360"/>
+                            <t t-if="total_rec &gt; page_total_rec">
+                                <t t-set="max_row" t-value="45"/>
+                            </t>                          
+                           
+                            <t t-set="page_total_rec" t-value="187 + (add_row * 11)"/>
+                            <t t-if="total_rec &gt; page_total_rec">
+                                <t t-set="max_row" t-value="33"/>
+                            </t>
+                            -->
+                          	
+                            <t t-set="row_num" t-value="range(max_row)"/>
+                            <t t-set="order_line_sorted"
+                               t-value="o.purch_id.order_line.sorted(key=lambda b: b.buyer, reverse=True)"/>
+							<t t-set="row_num" t-value="range(max_row)"/>   
+								
+							<!-- sum per col -->
+							<t t-set="col_1" t-value="0.0"/>
+							<t t-set="col_2" t-value="0.0"/>	
+							<t t-set="col_3" t-value="0.0"/>
+							<t t-set="col_4" t-value="0.0"/>
+							<t t-set="col_5" t-value="0.0"/>
+							<t t-set="col_6" t-value="0.0"/>
+							<t t-set="col_7" t-value="0.0"/>
+							<t t-set="col_8" t-value="0.0"/>
+							<t t-set="col_9" t-value="0.0"/>
+							<!--
+							<t t-set="col_10" t-value="0.0"/>	
+							<t t-set="col_11" t-value="0.0"/>
+							-->
+							<!-- close sum per col -->
+							<!-- values -->						                         
+                            <t t-foreach="row_num" t-as="rn">
+                                <tr height="16"
+                                    style="border-bottom: 1px solid grey; border-top: 1px solid grey; font-weight:small; font-size:14pt; text-align:center;">
+                                	<!--col.1-->
+                                    <td style="border-right: 1px solid grey; padding-top: 3px; padding-bottom: 3px; background-color:#DAEEFB;">
+                                        <span t-esc="num"/>
+                                    </td>
+                                    <t t-set="current_rec" t-value="rec_num"/>
+                                    <td style="border-right: 1px solid grey;">
+                                        <t t-if="current_rec &lt; total_rec">
+                                            <span t-esc="order_line_sorted[current_rec].crates_weight"/>
+											<t t-set="col_1" t-value="col_1+(order_line_sorted[current_rec].crates_weight)"/>                                            
+                                        </t>
+                                    </td>
+                                    
+                                	<!--col.2-->
+                                    <td style="border-right: 1px solid grey; background-color:#DAEEFB;">
+                                        <span t-esc="num + max_row"/>
+                                    </td>
+                                    <t t-set="current_rec" t-value="rec_num + max_row"/>
+                                    <td style="border-right: 1px solid grey;">
+                                        <t t-if="current_rec &lt; total_rec">
+                                            <span t-esc="order_line_sorted[current_rec].crates_weight"/>
+											<t t-set="col_2" t-value="col_2+(order_line_sorted[current_rec].crates_weight)"/>                                            
+                                        </t>
+                                    </td>
+                                    
+                                    <!--col.3-->
+                                    <td style="border-right: 1px solid grey; background-color:#DAEEFB;">
+                                        <span t-esc="num + (max_row*2)"/>
+                                    </td>
+                                    <t t-set="current_rec" t-value="rec_num + (max_row*2)"/>
+                                    <td style="border-right: 1px solid grey;">
+                                        <t t-if="current_rec &lt; total_rec">
+                                            <span t-esc="order_line_sorted[current_rec].crates_weight"/>
+											<t t-set="col_3" t-value="col_3+(order_line_sorted[current_rec].crates_weight)"/>                                            
+                                        </t>
+                                    </td>
+                                    
+                                    <!--col.4-->
+                                    <td style="border-right: 1px solid grey; background-color:#DAEEFB;">
+                                        <span t-esc="num + (max_row*3)"/>
+                                    </td>
+                                    <t t-set="current_rec" t-value="rec_num + (max_row*3)"/>
+                                    <td style="border-right: 1px solid grey;">
+                                        <t t-if="current_rec &lt; total_rec">
+                                            <span t-esc="order_line_sorted[current_rec].crates_weight"/>
+											<t t-set="col_4" t-value="col_4+(order_line_sorted[current_rec].crates_weight)"/>                                            
+                                        </t>
+                                    </td>
+                                    
+                                    <!--col.5-->
+                                    <td style="border-right: 1px solid grey; background-color:#DAEEFB;">
+                                        <span t-esc="num + (max_row*4)"/>
+                                    </td>
+                                    <t t-set="current_rec" t-value="rec_num + (max_row*4)"/>
+                                    <td style="border-right: 1px solid grey;">
+                                        <t t-if="current_rec &lt; total_rec">
+                                            <span t-esc="order_line_sorted[current_rec].crates_weight"/>
+	                                        <t t-set="col_5" t-value="col_5+(order_line_sorted[current_rec].crates_weight)"/>   
+                                        </t>
+                                    </td>
+                                    
+                                    <!--col.6-->
+                                    <td style="border-right: 1px solid grey; background-color:#DAEEFB;">
+                                        <span t-esc="num + (max_row*5)"/>
+                                    </td>
+                                    <t t-set="current_rec" t-value="rec_num + (max_row*5)"/>
+                                    <td style="border-right: 1px solid grey;">
+                                        <t t-if="current_rec &lt; total_rec">
+                                            <span t-esc="order_line_sorted[current_rec].crates_weight"/>
+                                            <t t-set="col_6" t-value="col_6+(order_line_sorted[current_rec].crates_weight)"/> 
+                                        </t>
+                                    </td>
+                                    
+                                    <!--col.7-->
+                                    <td style="border-right: 1px solid grey; background-color:#DAEEFB;">
+                                        <span t-esc="num + (max_row*6)"/>
+                                    </td>
+                                    <t t-set="current_rec" t-value="rec_num + (max_row*6)"/>
+                                    <td style="border-right: 1px solid grey;">
+                                        <t t-if="current_rec &lt; total_rec">
+                                            <span t-esc="order_line_sorted[current_rec].crates_weight"/>
+                                            <t t-set="col_7" t-value="col_7+(order_line_sorted[current_rec].crates_weight)"/> 
+                                        </t>
+                                    </td>
+                                    
+                                    <!--col.8-->
+                                    <td style="border-right: 1px solid grey; background-color:#DAEEFB;">
+                                        <span t-esc="num + (max_row*7)"/>
+                                    </td>
+                                    <t t-set="current_rec" t-value="rec_num + (max_row*7)"/>
+                                    <td style="border-right: 1px solid grey;">
+                                        <t t-if="current_rec &lt; total_rec">
+                                            <span t-esc="order_line_sorted[current_rec].crates_weight"/>
+                                            <t t-set="col_8" t-value="col_8+(order_line_sorted[current_rec].crates_weight)"/> 
+                                        </t>
+                                    </td>
+                                    
+                                    <!--col.9-->
+                                    <td style="border-right: 1px solid grey; background-color:#DAEEFB;">
+                                        <span t-esc="num + (max_row*8)"/>
+                                    </td>
+                                    <t t-set="current_rec" t-value="rec_num + (max_row*8)"/>
+                                    <td style="border-right: 1px solid grey;">
+                                        <t t-if="current_rec &lt; total_rec">
+                                            <span t-esc="order_line_sorted[current_rec].crates_weight"/>
+                                            <t t-set="col_9" t-value="col_9+(order_line_sorted[current_rec].crates_weight)"/> 
+                                        </t>
+                                    </td>
+                                    
+                                    <!--col.10-->
+                                    <!--
+                                    <td style="border-right: 1px solid grey; background-color:#DAEEFB;">
+                                        <span t-esc="num + (max_row*9)"/>
+                                    </td>
+                                    <t t-set="current_rec" t-value="rec_num + (max_row*9)"/>
+                                    <td style="border-right: 1px solid grey;">
+                                        <t t-if="current_rec &lt; total_rec">
+                                            <span t-esc="order_line_sorted[current_rec].crates_weight"/>
+                                            <t t-set="col_10" t-value="col_10+(order_line_sorted[current_rec].crates_weight)"/> 
+                                        </t>
+                                    </td>
+                                    -->
+                                    
+                                    <!--col.11-->
+                                    <!--
+                                    <td style="border-right: 1px solid grey; background-color:#DAEEFB;">
+                                        <span t-esc="num + (max_row*10)"/>
+                                    </td>
+                                    <t t-set="current_rec" t-value="rec_num + (max_row*10)"/>
+                                    <td style="border-right: 1px solid grey;">
+                                        <t t-if="current_rec &lt; total_rec">
+                                            <span t-esc="order_line_sorted[current_rec].crates_weight"/>
+                                            <t t-set="col_11" t-value="col_11+(order_line_sorted[current_rec].crates_weight)"/> 
+                                        </t>
+                                    </td>
+        							-->                            
+		                                    
+                                </tr>
+                                <t t-set="rec_num" t-value="rec_num + 1"/>
+                                <t t-set="num" t-value="num + 1"/>
+                            </t>
+                            <!-- close values-->
+                            
+                            <!-- total per column -->
+                            <tr height="16"
+                                style="font-weight:bold; font-size:14pt; background-color:#BADDF7; padding-top: 3px; text-align:center;">
+                                <td width="3%" style="border-right: 1px solid grey; padding-top: 10px; padding-bottom: 10px;">
+									<span style="font-weight: bold; font-size:14pt; ">Total</span>                   				
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                    <span t-esc="col_1"/>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+									<span style="font-weight: bold; font-size:14pt; ">Total</span>                   				
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                    <span t-esc="col_2"/>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+									<span style="font-weight: bold; font-size:14pt; ">Total</span>                   				
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                    <span t-esc="col_3"/>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+									<span style="font-weight: bold; font-size:14pt; ">Total</span>                   				
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                    <span t-esc="col_4"/>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+									<span style="font-weight: bold; font-size:14pt; ">Total</span>                   				
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                    <span t-esc="col_5"/>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+									<span style="font-weight: bold; font-size:14pt; ">Total</span>                   				
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                    <span t-esc="col_6"/>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+									<span style="font-weight: bold; font-size:14pt; ">Total</span>                   				
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                    <span t-esc="col_7"/>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+									<span style="font-weight: bold; font-size:14pt; ">Total</span>                   				
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                    <span t-esc="col_8"/>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+									<span style="font-weight: bold; font-size:14pt; ">Total</span>                   				
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                    <span t-esc="col_9"/>
+                                </td>
+                                <!--
+                                <td width="3%" style="border-right: 1px solid grey;">
+									<span style="font-weight: bold; font-size:6pt; ">Total</span>                   				
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                    <span t-esc="col_10"/>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+									<span style="font-weight: bold; font-size:6pt; ">Total</span>                   				
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                    <span t-esc="col_11"/>
+                                </td>
+                                -->
+                            </tr>                            
+							<!-- close total per column -->
+                        </table>
+						<!-- close Table in first page -->	
+                      
+						<!-- Table in second page -->	
+                        <t t-if="total_rec &gt; 180">	                        	
+                        	<p style="page-break-after:always;"></p>                        	
+                            <table width="100%"
+                                   style="border-bottom: 1px solid grey; border-top: 1px solid grey; border-right: 1px solid grey; border-left: 1px solid grey;">
+	                            <tr height="8"
+	                                style="font-weight:bold; font-size:14pt; background-color:#BADDF7; padding-top: 3px; text-align:center;">
+	                                <td width="3%" style="border-right: 1px solid grey; padding-top: 5px;">
+	                                    <p>No</p>
+	                                </td>
+	                                <td width="6%" style="border-right: 1px solid grey;">
+										<img t-att-src="'/soupese_base/static/src/img/gross_weight.png'" 
+										style="max-height:25px; max-weight:25px"/>     	
+	                                    <p>Gross Wt.</p>
+	                                </td>
+	                                <td width="3%" style="border-right: 1px solid grey;">
+	                                    <p>No</p>
+	                                </td>
+	                                <td width="6%" style="border-right: 1px solid grey;">
+	                                	<img src="/soupese_base/static/src/img/gross_weight.png" 
+	                                	style="max-height:25px; max-weight:25px"/>
+	                                    <p>Gross Wt.</p>
+	                                </td>
+	                                <td width="3%" style="border-right: 1px solid grey;">
+	                                    <p>No</p>
+	                                </td>
+	                                <td width="6%" style="border-right: 1px solid grey;">
+	                                	<img src="/soupese_base/static/src/img/gross_weight.png" 
+	                                	style="max-height:25px; max-weight:25px"/>
+	                                    <p>Gross Wt.</p>
+	                                </td>
+	                                <td width="3%" style="border-right: 1px solid grey;">
+	                                    <p>No</p>
+	                                </td>
+	                                <td width="6%" style="border-right: 1px solid grey;">
+	                                	<img src="/soupese_base/static/src/img/gross_weight.png" 
+	                                	style="max-height:25px; max-weight:25px"/>
+	                                    <p>Gross Wt.</p>
+	                                </td>
+	                                <td width="3%" style="border-right: 1px solid grey;">
+	                                    <p>No</p>
+	                                </td>
+	                                <td width="6%" style="border-right: 1px solid grey;">
+	                                	<img src="/soupese_base/static/src/img/gross_weight.png" 
+	                                	style="max-height:25px; max-weight:25px"/>
+	                                    <p>Gross Wt.</p>
+	                                </td>
+	                                <td width="3%" style="border-right: 1px solid grey;">
+	                                    <p>No</p>
+	                                </td>
+	                                <td width="6%" style="border-right: 1px solid grey;">
+	                                	<img src="/soupese_base/static/src/img/gross_weight.png" 
+	                                	style="max-height:25px; max-weight:25px"/>
+	                                    <p>Gross Wt.</p>
+	                                </td>
+	                                <td width="3%" style="border-right: 1px solid grey;">
+	                                    <p>No</p>
+	                                </td>
+	                                <td width="6%" style="border-right: 1px solid grey;">
+	                                	<img src="/soupese_base/static/src/img/gross_weight.png" 
+	                                	style="max-height:25px; max-weight:25px"/>
+	                                    <p>Gross Wt.</p>
+	                                </td>
+	                                <td width="3%" style="border-right: 1px solid grey;">
+	                                    <p>No</p>
+	                                </td>
+	                                <td width="6%" style="border-right: 1px solid grey;">
+	                                	<img src="/soupese_base/static/src/img/gross_weight.png" 
+	                                	style="max-height:25px; max-weight:25px"/>
+	                                    <p>Gross Wt.</p>
+	                                </td>
+	                                <td width="3%" style="border-right: 1px solid grey;">
+	                                    <p>No</p>
+	                                </td>
+	                                <td width="6%" style="border-right: 1px solid grey;">
+	                                	<img src="/soupese_base/static/src/img/gross_weight.png" 
+	                                	style="max-height:25px; max-weight:25px"/>
+	                                    <p>Gross Wt.</p>
+	                                </td>
+	                                <!--
+	                                <td width="3%" style="border-right: 1px solid grey;">
+	                                    <p>No</p>
+	                                </td>
+	                                <td width="6%" style="border-right: 1px solid grey;">
+	                                	毛重
+	                                    <p>Gross weight (Kg)</p>
+	                                </td>
+	                                <td width="3%" style="border-right: 1px solid grey;">
+	                                    <p>No</p>
+	                                </td>
+	                                <td width="6%" style="border-right: 1px solid grey;">
+	                                	毛重
+	                                    <p>Gross weight (Kg)</p>
+	                                </td>
+									-->                                
+	                            </tr>
+                                
+                                <t t-set="remain_rec" t-value="(1+(rec_num * 9))"/>
+                                <t t-set="needed_row" t-value="'{0:,.0f}'.format(int(remain_rec / 9))"/>
+                                <t t-set="max_row" t-value="int(needed_row) + 3"/>
+                                <t t-set="rec_num" t-value="((rec_num * 9))"/>
+                                <t t-set="num" t-value="1+rec_num"/>
+                                <t t-set="row_num" t-value="range(max_row)"/>
+                                <t t-set="order_line_sorted"
+                                   t-value="o.purch_id.order_line.sorted(key=lambda b: b.buyer, reverse=True)"/>
+								<!-- sum per col -->
+								<t t-set="col_1" t-value="0.0"/>
+								<t t-set="col_2" t-value="0.0"/>	
+								<t t-set="col_3" t-value="0.0"/>
+								<t t-set="col_4" t-value="0.0"/>
+								<t t-set="col_5" t-value="0.0"/>
+								<t t-set="col_6" t-value="0.0"/>
+								<t t-set="col_7" t-value="0.0"/>
+								<t t-set="col_8" t-value="0.0"/>
+								<t t-set="col_9" t-value="0.0"/>
+								<!--
+								<t t-set="col_10" t-value="0.0"/>	
+								<t t-set="col_11" t-value="0.0"/>
+								-->                            
+                                <t t-foreach="row_num" t-as="rn">
+                                    <tr height="16"
+                                        style="border-bottom: 1px solid grey; border-top: 1px solid grey; font-weight:small; font-size:14pt; text-align:center;">
+		                                	<!--col.1-->
+		                                    <td style="border-right: 1px solid grey; padding-top: 3px; padding-top: 3px; background-color:#DAEEFB;">
+		                                        <span t-esc="num"/>
+		                                    </td>
+		                                    <t t-set="current_rec" t-value="rec_num"/>
+		                                    <td style="border-right: 1px solid grey;">
+		                                        <t t-if="current_rec &lt; total_rec">
+		                                            <span t-esc="order_line_sorted[current_rec].crates_weight"/>
+													<t t-set="col_1" t-value="col_1+(order_line_sorted[current_rec].crates_weight)"/>                                            
+		                                        </t>
+		                                    </td>
+		                                    
+		                                	<!--col.2-->
+		                                    <td style="border-right: 1px solid grey; background-color:#DAEEFB;">
+		                                        <span t-esc="num + max_row"/>
+		                                    </td>
+		                                    <t t-set="current_rec" t-value="rec_num + max_row"/>
+		                                    <td style="border-right: 1px solid grey;">
+		                                        <t t-if="current_rec &lt; total_rec">
+		                                            <span t-esc="order_line_sorted[current_rec].crates_weight"/>
+													<t t-set="col_2" t-value="col_2+(order_line_sorted[current_rec].crates_weight)"/>                                            
+		                                        </t>
+		                                    </td>
+		                                    
+		                                    <!--col.3-->
+		                                    <td style="border-right: 1px solid grey; background-color:#DAEEFB;">
+		                                        <span t-esc="num + (max_row*2)"/>
+		                                    </td>
+		                                    <t t-set="current_rec" t-value="rec_num + (max_row*2)"/>
+		                                    <td style="border-right: 1px solid grey;">
+		                                        <t t-if="current_rec &lt; total_rec">
+		                                            <span t-esc="order_line_sorted[current_rec].crates_weight"/>
+													<t t-set="col_3" t-value="col_3+(order_line_sorted[current_rec].crates_weight)"/>                                            
+		                                        </t>
+		                                    </td>
+		                                    
+		                                    <!--col.4-->
+		                                    <td style="border-right: 1px solid grey; background-color:#DAEEFB;">
+		                                        <span t-esc="num + (max_row*3)"/>
+		                                    </td>
+		                                    <t t-set="current_rec" t-value="rec_num + (max_row*3)"/>
+		                                    <td style="border-right: 1px solid grey;">
+		                                        <t t-if="current_rec &lt; total_rec">
+		                                            <span t-esc="order_line_sorted[current_rec].crates_weight"/>
+													<t t-set="col_4" t-value="col_4+(order_line_sorted[current_rec].crates_weight)"/>                                            
+		                                        </t>
+		                                    </td>
+		                                    
+		                                    <!--col.5-->
+		                                    <td style="border-right: 1px solid grey; background-color:#DAEEFB;">
+		                                        <span t-esc="num + (max_row*4)"/>
+		                                    </td>
+		                                    <t t-set="current_rec" t-value="rec_num + (max_row*4)"/>
+		                                    <td style="border-right: 1px solid grey;">
+		                                        <t t-if="current_rec &lt; total_rec">
+		                                            <span t-esc="order_line_sorted[current_rec].crates_weight"/>
+			                                        <t t-set="col_5" t-value="col_5+(order_line_sorted[current_rec].crates_weight)"/>   
+		                                        </t>
+		                                    </td>
+		                                    
+		                                    <!--col.6-->
+		                                    <td style="border-right: 1px solid grey; background-color:#DAEEFB;">
+		                                        <span t-esc="num + (max_row*5)"/>
+		                                    </td>
+		                                    <t t-set="current_rec" t-value="rec_num + (max_row*5)"/>
+		                                    <td style="border-right: 1px solid grey;">
+		                                        <t t-if="current_rec &lt; total_rec">
+		                                            <span t-esc="order_line_sorted[current_rec].crates_weight"/>
+		                                            <t t-set="col_6" t-value="col_6+(order_line_sorted[current_rec].crates_weight)"/> 
+		                                        </t>
+		                                    </td>
+		                                    
+		                                    <!--col.7-->
+		                                    <td style="border-right: 1px solid grey; background-color:#DAEEFB;">
+		                                        <span t-esc="num + (max_row*6)"/>
+		                                    </td>
+		                                    <t t-set="current_rec" t-value="rec_num + (max_row*6)"/>
+		                                    <td style="border-right: 1px solid grey;">
+		                                        <t t-if="current_rec &lt; total_rec">
+		                                            <span t-esc="order_line_sorted[current_rec].crates_weight"/>
+		                                            <t t-set="col_7" t-value="col_7+(order_line_sorted[current_rec].crates_weight)"/> 
+		                                        </t>
+		                                    </td>
+		                                    
+		                                    <!--col.8-->
+		                                    <td style="border-right: 1px solid grey; background-color:#DAEEFB;">
+		                                        <span t-esc="num + (max_row*7)"/>
+		                                    </td>
+		                                    <t t-set="current_rec" t-value="rec_num + (max_row*7)"/>
+		                                    <td style="border-right: 1px solid grey;">
+		                                        <t t-if="current_rec &lt; total_rec">
+		                                            <span t-esc="order_line_sorted[current_rec].crates_weight"/>
+		                                            <t t-set="col_8" t-value="col_8+(order_line_sorted[current_rec].crates_weight)"/> 
+		                                        </t>
+		                                    </td>
+		                                    
+		                                    <!--col.9-->
+		                                    <td style="border-right: 1px solid grey; background-color:#DAEEFB;">
+		                                        <span t-esc="num + (max_row*8)"/>
+		                                    </td>
+		                                    <t t-set="current_rec" t-value="rec_num + (max_row*8)"/>
+		                                    <td style="border-right: 1px solid grey;">
+		                                        <t t-if="current_rec &lt; total_rec">
+		                                            <span t-esc="order_line_sorted[current_rec].crates_weight"/>
+		                                            <t t-set="col_9" t-value="col_9+(order_line_sorted[current_rec].crates_weight)"/> 
+		                                        </t>
+		                                    </td>
+		                                    
+		                                    <!--col.10-->
+		                                    <!--
+		                                    <td style="border-right: 1px solid grey; background-color:#DAEEFB;">
+		                                        <span t-esc="num + (max_row*9)"/>
+		                                    </td>
+		                                    <t t-set="current_rec" t-value="rec_num + (max_row*9)"/>
+		                                    <td style="border-right: 1px solid grey;">
+		                                        <t t-if="current_rec &lt; total_rec">
+		                                            <span t-esc="order_line_sorted[current_rec].crates_weight"/>
+		                                            <t t-set="col_10" t-value="col_10+(order_line_sorted[current_rec].crates_weight)"/> 
+		                                        </t>
+		                                    </td>-->
+		                                    
+		                                    <!--col.11-->
+		                                    <!--
+		                                    <td style="border-right: 1px solid grey; background-color:#DAEEFB;">
+		                                        <span t-esc="num + (max_row*10)"/>
+		                                    </td>
+		                                    <t t-set="current_rec" t-value="rec_num + (max_row*10)"/>
+		                                    <td style="border-right: 1px solid grey;">
+		                                        <t t-if="current_rec &lt; total_rec">
+		                                            <span t-esc="order_line_sorted[current_rec].crates_weight"/>
+		                                            <t t-set="col_11" t-value="col_11+(order_line_sorted[current_rec].crates_weight)"/> 
+		                                        </t>
+		                                    </td>-->
+                                    
+                                    </tr>
+                                    <t t-set="rec_num" t-value="rec_num + 1"/>
+                                    <t t-set="num" t-value="num + 1"/>
+                                </t>
+                            <!-- total per column -->
+                            <tr height="16"
+                                style="font-weight:bold; font-size:14pt; background-color:#BADDF7; padding-top: 10px; padding-bottom: 10px; text-align:center;">
+                                <td width="3%" style="border-right: 1px solid grey; padding-top: 5px;">
+									<span style="font-weight: bold; font-size:14pt; ">Total</span>                   				
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                    <span t-esc="col_1"/>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+									<span style="font-weight: bold; font-size:14pt; ">Total</span>                   				
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                    <span t-esc="col_2"/>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+									<span style="font-weight: bold; font-size:14pt; ">Total</span>                   				
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                    <span t-esc="col_3"/>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+									<span style="font-weight: bold; font-size:14pt; ">Total</span>                   				
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                    <span t-esc="col_4"/>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+									<span style="font-weight: bold; font-size:14pt; ">Total</span>                   				
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                    <span t-esc="col_5"/>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+									<span style="font-weight: bold; font-size:14pt; ">Total</span>                   				
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                    <span t-esc="col_6"/>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+									<span style="font-weight: bold; font-size:14pt; ">Total</span>                   				
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                    <span t-esc="col_7"/>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+									<span style="font-weight: bold; font-size:14pt; ">Total</span>                   				
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                    <span t-esc="col_8"/>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+									<span style="font-weight: bold; font-size:14pt; ">Total</span>                   				
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                    <span t-esc="col_9"/>
+                                </td>
+                                <!--
+                                <td width="3%" style="border-right: 1px solid grey;">
+									<span style="font-weight: bold; font-size:6pt; ">Total</span>                   				
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                    <span t-esc="col_10"/>
+                                </td>
+                                <td width="3%" style="border-right: 1px solid grey;">
+									<span style="font-weight: bold; font-size:6pt; ">Total</span>                   				
+                                </td>
+                                <td width="6%" style="border-right: 1px solid grey;">
+                                    <span t-esc="col_11"/>
+                                </td>
+                                -->
+                            </tr>                            
+                            </table>
+                        </t>
+                       <!--close Table in second page -->	
+                        
+                        <!-- table amount price -->
+						<br/>                      
+                        <table width="100%" style="border-bottom: 1px solid grey; border-top: 1px solid grey; border-right: 1px solid grey; border-left: 1px solid grey;">
+                       		<tr>
+                       			<td style="text-align:center;">
+                       				<img src="/soupese_base/static/src/img/total_gross_weight.png" 
+	                                style="max-height:20px; max-weight:20px"/>
+                       				<br/>
+									<span style="font-weight: normal; font-size:14pt;"> T. Gross Wt.</span>                   				
+                       			</td>
+                       			<td style="text-align:center;">
+									<span style="font-weight: normal; font-size:22pt; ">-</span>                   				                        				
+                       			</td>                        			
+                       			<td style="text-align:center;">
+                       				<img src="/soupese_base/static/src/img/total_crate_weight.png" 
+	                                style="max-height:20px; max-weight:20px"/> 
+                       				<br/>
+									<span style="font-weight: normal; font-size:14pt;">T. Crate Wt.</span>                   				                        				
+                       			</td> 
+                       			<td style="text-align:center;">
+									<span style="font-weight: normal; font-size:22pt; ">=</span>                   				                        				
+                       			</td>                         			
+                       			<td style="text-align:center;">
+                       				<img src="/soupese_base/static/src/img/total_net_weight.png" 
+	                                style="max-height:20px; max-weight:20px"/> 
+                       				<br/>
+									<span style="font-weight: normal; font-size:14pt; ">T. Net Wt.</span>                   				
+                       			</td>
+                       			<td style="text-align:center;">
+									<span style="font-weight: normal; font-size:22pt; ">x</span>                   				                        				
+                       			</td>                         			   
+                       			<td style="text-align:center;">
+                       				<img src="/soupese_base/static/src/img/unit_price.png" 
+	                                style="max-height:20px; max-weight:20px"/>  
+                       				<br/>                       				
+									<span style="font-weight: normal; font-size:14pt; text-align:center;">U. Price</span>                   				
+                       			</td>  
+                       			<td style="text-align:center;">
+									<span style="font-weight: normal; font-size:22pt; ">=</span>                   				                        				
+                       			</td>                         			   
+                       			<td style="text-align:center;">
+                       				<img src="/soupese_base/static/src/img/amount.png" 
+	                                style="max-height:20px; max-weight:20px"/> 
+                       				<br/>                       				
+									<span style="font-weight: normal; font-size:14pt; ">Amount</span>                   				
+                       			</td>                       			                        			                 			                      			
+                       		</tr>  
+                       		<tr>
+                       			<td style="border-top: 1px solid grey; text-align:center;">
+									<span style="font-weight: bold; font-size: 14pt;" t-esc="'{0:,.2f}'.format(float(o.purch_id.total_gw))"/>
+                       				<span style="font-weight: bold; font-size: 14pt;"> kg</span>
+                       			</td>
+                       			<td style="border-top: 1px solid grey; border-right: 1px solid grey;">
+									<span style="font-weight: normal; font-size:8pt; "></span>                   				                        				
+                       			</td>                       			
+                       			<td style="border-top: 1px solid grey; text-align:center;">
+									<span style="font-weight: bold; font-size: 14pt;" t-esc="'{0:,.2f}'.format(float(o.purch_id.total_cw))"/>
+                       				<span style="font-weight: bold; font-size: 14pt;"> kg</span>
+                       			</td> 
+                       			<td style="border-top: 1px solid grey; border-right: 1px solid grey;">
+									<span style="font-weight: normal; font-size:8pt; "></span>                   				                        				
+                       			</td>                         			
+                       			<td style="border-top: 1px solid grey; text-align:center;">
+									<span style="font-weight: bold; font-size: 14pt;" t-esc="'{0:,.2f}'.format(float(o.purch_id.total_nw))"/>
+                       				<span style="font-weight: bold; font-size: 14pt;"> kg</span>
+                       			</td>
+                       			<td style="border-top: 1px solid grey; border-right: 1px solid grey;">
+									<span style="font-weight: normal; font-size:8pt; "></span>                   				                        				
+                       			</td>                        			   
+                       			<td style="border-top: 1px solid grey; text-align:left;">
+                       				<span style="font-weight: normal; font-size:14pt;"></span>
+                       			</td>  
+                       			<td style="border-top: 1px solid grey; border-right: 1px solid grey;">
+									<span style="font-weight: normal; font-size:8pt; "></span>                   				                        				
+                       			</td>                         			   
+                       			<td style="border-top: 1px solid grey; text-align:left;">
+                       				<span style="font-weight: normal; font-size:14pt;"></span>
+                       			</td>                       			                        			                 			                      			
+                       		</tr>                        		                      	
+                        </table>
+                        
+                        <!-- table conclusion -->
+						<br/>
+						<t t-set="set_off_feeding" t-value="''"/>
+                        <t t-set="off_feeding" t-value="o.purch_id.off_feeding"/>
+                        <t t-if="o.purch_id.off_feeding == 'no'">
+                            <t t-set="set_off_feeding" t-value="No"/>
+                        </t>
+                        <t t-if="o.purch_id.off_feeding == 'yes'">
+                            <t t-set="set_off_feeding" t-value="Yes"/>
+                        </t>							
+
+                        <!-- added 20171228 -->
+                        <table style="width: 100%; font-size: 12pt;">
+                           <tbody>
+                              <tr>
+                                 <td style="width: 13%;">Loading Start :</td>
+                                 <td style="width: 17%;">
+                                    <t t-set="start_loading_time" t-value="o.purch_id.start_loading_time" />
+                                    <t t-if="o.purch_id.start_loading_time">
+                                       <t t-set="start_loading_time" t-value="time.strftime('%d/%m/%Y %H:%M:%S',time.strptime(o.purch_id.start_loading_time,'%Y-%m-%d %H:%M:%S'))" />
+                                    </t>
+                                    <span style="font-weight: normal;" t-esc="start_loading_time" />
+                                 </td>
+                                 <td style="width: 10%;">Batch ID :</td>
+                                 <td style="width: 21%;"><span style="font-weight: normal;" t-esc="o.purch_id.batch_id" /></td>
+                                 <td style="width: 10%;">Mix :</td>
+                                 <td style="width: 10%;"><span style="font-weight: normal;" t-esc="o.purch_id.birdcrate_mix" /></td>
+                                 <td style="width: 13.3784%;">Total Birds :</td>
+                                 <td style="width: 10%;"><span style="font-weight: normal;" t-esc="o.purch_id.total_nb_birds" /></td>
+                              </tr>
+                              <tr>
+                                 <td style="width: 13%;">Loading End :</td>
+                                 <td style="width: 17%;">
+                                    <t t-set="end_loading_time" t-value="o.purch_id.end_loading_time" />
+                                    <t t-if="o.purch_id.end_loading_time">
+                                       <t t-set="end_loading_time" t-value="time.strftime('%d/%m/%Y %H:%M:%S',time.strptime(o.purch_id.end_loading_time, '%Y-%m-%d %H:%M:%S'))" />
+                                    </t>
+                                    <span style="font-weight: normal;" t-esc="end_loading_time" />
+                                 </td>
+                                 <td style="width: 10%;">Product :</td>
+                                 <td style="width: 21%;"><span style="font-weight: normal;" t-esc="o.purch_id.product" /></td>
+                                 <td style="width: 10%;">Male :</td>
+                                 <td style="width: 10%;"><span style="font-weight: normal;" t-esc="o.purch_id.birdcrate_male" /></td>
+                                 <td style="width: 13.3784%;">Av. Bird Wt. (kg) :</td>
+                                 <td style="width: 10%;"><span style="font-weight: normal;" t-esc="'{0:,.2f}'.format(float(o.purch_id.avg_b_w))" /></td>
+                              </tr>
+                              <tr>
+                                 <td style="width: 13%;">Cover Wt. (kg) :</td>
+                                 <td style="width: 17%;"><span style="font-weight: normal;" t-esc="'{0:,.2f}'.format(float(o.purch_id.single_cover_weight))" /></td>
+                                 <td style="width: 10%;">Breed :</td>
+                                 <td style="width: 21%;"><span style="font-weight: normal;" t-esc="o.purch_id.breed" /></td>
+                                 <td style="width: 10%;">Female :</td>
+                                 <td style="width: 10%;"><span style="font-weight: normal;" t-esc="o.purch_id.birdcrate_female" /></td>
+                                 <td style="width: 13.3784%;">Apollo :</td>
+                                 <td style="width: 10%;"><span style="font-weight: normal;" t-esc="o.purch_id.total_apollo" /></td>
+                              </tr>
+                              <tr>
+                                 <td style="width: 13%;">Added Covers :</td>
+                                 <td style="width: 17%;"><span style="font-weight: normal;" t-esc="'{0:,.0f}'.format(int(o.purch_id.totalcover))" /></td>
+                                 <td style="width: 10%;">Age :</td>
+                                 <td style="width: 21%;"><span style="font-weight: normal;" t-esc="o.purch_id.age" /></td>
+                                 <td style="width: 10%;">SX :</td>
+                                 <td style="width: 10%;"><span style="font-weight: normal;" t-esc="o.purch_id.birdcrate_b" /></td>
+                                 <td style="width: 13.3784%;">Off-Feed :</td>
+                                 <td style="width: 10%;"><span style="font-weight: normal;" t-esc="o.purch_id.off_feeding.upper()" /></td>
+                              </tr>
+                              <tr>
+                                 <td style="width: 13%;">Catching Bill :</td>
+                                 <td style="width: 17%;"><span style="font-weight: normal;" t-esc="o.purch_id.catching_bill" /></td>
+                                 <td style="width: 10%;">House :</td>
+                                 <td style="width: 21%;"><span style="font-weight: normal;" t-esc="o.purch_id.farm_house_number" /></td>
+                                 <td style="width: 10%;">Others :</td>
+                                 <td style="width: 10%;"><span style="font-weight: normal;" t-esc="o.purch_id.birdcrate_c" /></td>
+                                 <td style="width: 13.3784%;">Fogging/Raining :</td>
+                                 <td style="width: 10%;"><span style="font-weight: normal;" t-esc="o.purch_id.water_fogging.upper()" /></td>
+                              </tr>
+                           </tbody>
+                        </table>
+                  		                       		                       		
+                        <!-- table for signature -->
+						<p/>                        
+                        <table width="100%">
+                            <tr>
+                                <td width="40%"
+                                    style="border-top: 1px solid grey; border-right: 1px solid grey; border-left: 1px solid grey;font-size:14pt; padding-right: 5px; padding-left: 10px; padding-top: 1px; font-weight:bold;">
+                                    Comments: 
+                                </td>
+                                <td width="30%"
+                                	style="border-top: 1px solid grey; border-right: 1px solid grey; border-left: 1px solid grey;font-size:14pt; padding-right: 5px; padding-left: 10px; padding-top: 1px; font-weight:bold;">
+                                    Customer Signature:
+                                </td>      
+                                <td width="30%"
+                                	style="border-top: 1px solid grey; border-right: 1px solid grey; border-left: 1px solid grey;font-size:14pt; padding-right: 5px; padding-left: 10px; padding-top: 1px; font-weight:bold;">
+                                    Farm Signature:
+                                </td>                                                          
+                            </tr>
+                            <tr height="50">
+                                <td width="40%"
+                                    style="border-bottom: 1px solid grey; border-right: 1px solid grey; border-left: 1px solid grey;font-size:14pt; font-weight:normal;">
+                                    <span t-field="o.purch_id.other_comment"/>
+                                </td>
+                                <td width="30%"
+                                    style="text-align:center; border-bottom: 1px solid grey; border-right: 1px solid grey; border-left: 1px solid grey;font-size:14pt; font-weight:normal;">
+                                    <t t-if="o.purch_id.customer_signature">
+                                        <img t-att-src="'data:image/png;base64,%s' % o.purch_id.customer_signature"
+                                             style="max-height: 70px;"/>
+                                    </t>
+                                </td>
+                                <td width="30%"
+                                    style="text-align:center; border-bottom: 1px solid grey; border-right: 1px solid grey; border-left: 1px solid grey;font-size:14pt; font-weight:normal;">
+                                    <t t-if="o.purch_id.farmer_signature">
+                                        <img t-att-src="'data:image/png;base64,%s' % o.purch_id.farmer_signature"
+                                             style="max-height: 70px;"/>
+                                    </t>
+                                </td>                                                                
+                            </tr>
+                        </table>
+                        
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <template id="custom_layout">
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.purch_id.company_id"></t>
+            </t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"></t>
+            </t>
+
+            <t t-call="soupese_base.custom_layout_header"/>
+            <t t-raw="0"/>
+            <t t-call="soupese_base.custom_layout_footer"/>
+        </template>
+
+        <template id="custom_layout_header">
+            <div class="header">
+            </div>
+        </template>
+
+        <template id="custom_layout_footer">
+            <div class="footer">
+                <t t-foreach="docs" t-as="o">
+                    <table border="none" width="100%" style="border-top: 1px solid gray;">
+                        <tr>
+                            <td width="62%" style="text-align:left; padding-left: 5px;">
+                                <li style="list-style: none; font-size:9pt;">Print date:
+                                    <span t-esc="time.strftime('%Y-%m-%d')"/>
+                                </li>
+                            </td>
+                            <td width="38%" style="text-align:right; padding-right: 15px;">
+                                <li style="list-style: none; font-size:9pt;" t-if="o.purch_id.name">
+                                    <span t-field="o.purch_id.name"/>
+                                </li>
+                            </td>
+                        </tr>
+                    </table>
+                </t>
+            </div>
+        </template>
+
+        <template id="delivery_report">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="soupese_base.new_delivery_report_document" t-lang="doc.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

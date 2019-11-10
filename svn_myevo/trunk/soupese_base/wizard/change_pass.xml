@@ -1,0 +1,34 @@
+<openerp>
+	<data>
+       <record id="change_password_wizard_form_view" model="ir.ui.view">
+            <field name="name">change.password.wizard.form</field>
+            <field name="model">user.profile.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Change Password sfads">
+                    <field name="user_ids"/>
+                    <footer>
+                        <button string="Change Password" name="change_password_custom" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="change_password_wizard_tree_view" model="ir.ui.view">
+            <field name="name">change.password.wizard.tree</field>
+            <field name="model">user.profile.change.password</field>
+            <field name="arch" type="xml">
+                <!-- the user list is editable, but one cannot add or delete rows -->
+                <tree string="Users" editable="bottom" create="false" delete="false">
+                    <field name="user_login"/>
+                    <field name="new_password" required="True" password="True"/>
+                </tree>
+            </field>
+        </record>
+		
+		 <act_window id="change_password_wizard_action"
+            name="Change Password User"
+            res_model="user.profile.wizard"
+            view_type="form" view_mode="form"
+            target="new"/>
+	</data>
+</openerp>

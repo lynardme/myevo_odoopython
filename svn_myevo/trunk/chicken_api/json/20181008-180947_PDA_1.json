@@ -1,0 +1,151 @@
+{
+    "username": " ", 
+    "breed": "Haha", 
+    "total_male": 0, 
+    "off_feeding": "no", 
+    "total_female": 0, 
+    "userLorry": "Dummy Lorry", 
+    "farmer_sign": "R0lGODlhlQBPAHAAACH5BAEAAAEALAAAAACVAE8AgQAAAAAAAAAAAAAAAAL/jI+py+0Po5z0gItx3bz7L2XimIHdZaYqyaIOoFZuTDcte9YhrNN32Qu+eMLNj1hMPpDKxa8JnTCTx6hVNo09r1zOLHXrij9fL26MBpV3o7QbnHWe33R1PNCq61fI/P7PNwc4aCdCeFjYhrhIQYKwxhhpoagAKXnouHR3WZe5wwnoiQVKJ3qySUpFCZd6teqD2hqoUWQpOxtle0tGmxu769WlC8z5S8xofIyYrEzI3BwKLfssrTdcPXiN/ae9bU3tjdYd/jaOF0Zey3PEnl7D/ureAy/PtfUIXm9kymCuL8UPgr9/NgICJOjBoBmE+3rBYshmYKN87hwKkZgOiBKMSuQ4LoTYiSJIHR5HPjTppiRKVivFiWxpQiXMhDPHvKxJE6c9nTt5Wrnps1FQKDKHCgRqVFNSVUvVNb2I9GmlqFLxVSVJ9eo5mAUAACH+/gDyBwGAAWs7MLQWUhJOi8TauCd+lw6LnEDE4HKYRKhuwT5FR1upvJNbPS4WVkmfuV6XHyp+zqJwl9JK7ZNBjSquqmOOFhptnwcpdlUSRosFxSYoDQZ7VVTYfgj/QUCrhYUszXgeGKFMgtCIbpVAtEOyaVhP1O8vydZl8OKqTZMWxS0+z6DeAxVIEWQCEogAZQISiAJFNGYCMpgARjQFCDg2C2doaWprGRwyCQD+/wcBAMAeRTMJAP7/BwEAwB5FOAQA/v8BCtMBDIP+DXr+DW3HKuO+/VSH4Qjgv6VTtDWaDTWx2Ox10IL++4v77jAAh3wAayHvLd8LuHlnE9Cx/ryRXRZeDUPuCODg4MsKABUA4PDgCQAAAABWAAQgAACAP5sGF0PgDkhBAACAPwAAAAAAAAAA+qgaQx6TFUIAAIA/AAAAAAAAAACEGRpDEu56QgAAgD8AAAAAAAAAAK4bGUOpuK9CAACAPwAAAAAAAAAACgAUACvwv0LvXtQBCgAUAKz7FgAAAAAAEgAVIAEAAAAAAAAAaNaLr18AAAAK1gINh/Ajd4Dt+CS2FoCP4xzrnXKuL8G1EIfmUOapv8vhMonU4mEqkEohAIL++4v77jAAh3wA45Hpvj9B7/hmE8Fs/gVT6PCvRzhb/ASp4YaQCDwBVCCeEAAAAM4BAAQg/gAAQEAAANhCKAsaQgAAgD8AAAAAAAAAACXp40IAtw1CAACAPwAAAAAAAAAAZajtQqeLC0IAAIA/AAAAAAAAAABO2/pCECsEQgAAgD8AAAAAAAAAAEtWJkNIxa5BAACAPwAAAAAAAAAA6FBQQ3qPXkEAAIA/AAAAAAAAAAAkiXpDcOAqQQAAgD8AAAAAAAAAABkdfEPu8ShBAACAPwAAAAAAAAAAMXKAQx56KEEAAIA/AAAAAAAAAAA5Z39DEidWQQAAgD8AAAAAAAAAAAoAFACix+tC717UAQo/AClK8ADIAAAAABIAFSABAAAAAAAAAB81kK9fAAAACv4BB4fw+ykXgTPs3AEaExZVQIfrfOuxmM/gdClwgv77i/vuMACHetpLzKg+lELywe+IxDzw4gg8AVuwnhAAAACSAQAEIAAAAEC+995CaPp/QgAAgD8AAAAAAAAAAH9P7EJ9sG9CAACAPwAAAAAAAAAAjGLqQmC6ckIAAIA/AAAAAAAAAADg0v9C7qJnQgAAgD8AAAAAAAAAAH8qEkOdv1RCAACAPwAAAAAAAAAAvtoiQ2HUUUIAAIA/AAAAAAAAAADWoTVD00NOQgAAgD8AAAAAAAAAAAoAFABRqBlD717UAQoAFACO9hEAAAAAABIAFSABAAAAAAAAAFTKlK9fAAAAADs=", 
+    "product": "Broiler", 
+    "avg_crates_weight": 0.13, 
+    "end_loading_time": "2018-10-08 18:11:11", 
+    "lory_number": "Dummy Lorry", 
+    "crate_loading": [
+        {
+            "nb_added_cover": 0.0, 
+            "weighing_date": "2018-10-08T18:10:11", 
+            "crate_weight_original": 0.5, 
+            "crate_weight": 0.5, 
+            "crate_net": 0.37, 
+            "buyer": "Test buyer bb", 
+            "number_of_crates": 1, 
+            "buyer_category": "Erp", 
+            "buyer_id": "6"
+        }, 
+        {
+            "nb_added_cover": 0.0, 
+            "weighing_date": "2018-10-08T18:10:17", 
+            "crate_weight_original": 0.5, 
+            "crate_weight": 0.5, 
+            "crate_net": 0.37, 
+            "buyer": "Test buyer bb", 
+            "number_of_crates": 1, 
+            "buyer_category": "Erp", 
+            "buyer_id": "9"
+        }, 
+        {
+            "nb_added_cover": 0.0, 
+            "weighing_date": "2018-10-08T18:10:24", 
+            "crate_weight_original": 0.5, 
+            "crate_weight": 0.5, 
+            "crate_net": 0.37, 
+            "buyer": "Test buyer bb", 
+            "number_of_crates": 1, 
+            "buyer_category": "Erp", 
+            "buyer_id": "6"
+        }, 
+        {
+            "nb_added_cover": 0.0, 
+            "weighing_date": "2018-10-08T18:10:29", 
+            "crate_weight_original": 0.5, 
+            "crate_weight": 0.5, 
+            "crate_net": 0.37, 
+            "buyer": "Test buyer bb", 
+            "number_of_crates": 1, 
+            "buyer_category": "Erp", 
+            "buyer_id": "6"
+        }, 
+        {
+            "nb_added_cover": 2.0, 
+            "weighing_date": "2018-10-08T18:10:58", 
+            "crate_weight_original": 0.5, 
+            "crate_weight": 1.3, 
+            "crate_net": 1.17, 
+            "buyer": "Test buyer bb", 
+            "number_of_crates": 1, 
+            "buyer_category": "Erp", 
+            "buyer_id": "11"
+        }, 
+        {
+            "nb_added_cover": 2.0, 
+            "weighing_date": "2018-10-08T18:11:05", 
+            "crate_weight_original": 0.5, 
+            "crate_weight": 1.3, 
+            "crate_net": 1.17, 
+            "buyer": "", 
+            "number_of_crates": 1, 
+            "buyer_category": "Erp", 
+            "buyer_id": "temp_20181008181107_Test buyer cc"
+        }
+    ], 
+    "weighing_mode": "OngoingManual", 
+    "totalcover": 4, 
+    "start_loading_time": "2018-10-08 18:09:58", 
+    "defaultLorry": "Dummy Lorry", 
+    "single_cover_weight": 0.4, 
+    "farm_id": "Dummy Farm", 
+    "pda_model": "PDA_1", 
+    "age": "0", 
+    "last_position_long": "101.631284262742", 
+    "batch_id": "", 
+    "other_comment": "", 
+    "avg_bird_weight": 0.06366666666666666, 
+    "owner_id": "Demomy Soupese", 
+    "total_apollo": 0, 
+    "total_do_net_weight": 3.82, 
+    "new_buyers": [
+        {
+            "city": "Batu caves ", 
+            "name": "", 
+            "zip": "65800", 
+            "street": "34 street g", 
+            "country_name": "Malaysia", 
+            "id": "temp_20181008181107_Test buyer cc", 
+            "state_name": "Selangor"
+        }
+    ], 
+    "pda_do_id": "20181008-180947_PDA_1", 
+    "tar_date": "0001-01-01T00:00:00", 
+    "total_crates": 6, 
+    "last_position_latt": "3.13196011247803", 
+    "total_gross_weight": 4.6, 
+    "pda_id": "PDA_1", 
+    "water_fogging": "yes", 
+    "date": "2018-10-08 18:09:58", 
+    "product_id": "2", 
+    "scale_id": "SCE375S", 
+    "total_nb_birds": 60, 
+    "defaultFarm": "Dummy Farm", 
+    "bird_distribution_per_crate": {
+        "mix": {
+            "nb_crates": 6, 
+            "total_birds": 10, 
+            "avg_birds_per_crate": 1
+        }, 
+        "C": {
+            "nb_crates": 0, 
+            "total_birds": 0, 
+            "avg_birds_per_crate": 0
+        }, 
+        "B": {
+            "nb_crates": 0, 
+            "total_birds": 0, 
+            "avg_birds_per_crate": 0
+        }, 
+        "male": {
+            "nb_crates": 0, 
+            "total_birds": 0, 
+            "avg_birds_per_crate": 0
+        }, 
+        "female": {
+            "nb_crates": 0, 
+            "total_birds": 0, 
+            "avg_birds_per_crate": 0
+        }
+    }, 
+    "farm_house_number": "", 
+    "owner_sign": "R0lGODlhfgBJAHAAACH5BAEAAAEALAAAAAB+AEkAgQAAAAAAAAAAAAAAAAL/jI+py+0PA5i02oiz3vzZD4ZTR5amI45deLZu9L1JLNf23VT4ztd6DwxyfsKikUE5KpcGFfMZTEIxzimsas0BslQsd7b9QrziA7mMOIvV6Ga4bYZr33B2227Fo/VQ/lruBohEt0coGAjo96WoxJjlaAQ5JVlE+WRYZsmkCYQpyNkDGum5SFpnyoVaeCgq1Lrz2qn6eJg2m3f7mNu3O9l7+bsUyzN8U4xz7BO8uTxam8bazPwpLVwdet2YDbt91G2TjH0XTvz9Ql6++ryAvtFOnGluXbqOIr9yP49bP4abPw3sH0BrAgd6e9dIHz85UhaeKuiwRMOIaxBS7EKJyMUWOBNJ0NiIzxwIkFc6grtAUgFKVx8vrmSmcV1Lfy8L1bQ5E2ZMmSlkjUzpJsVNdkJ3Ah1UNKnRLAUAACH+/gD0BgGAAWs7MLQWUhJOi8TauCd+lw6LnEDE4HKYRKhuwT5FR1upvJNbPS4WVkmfuV6XHyp+zqJwl9JK7ZNBjSquqmOOFhptnwcpdlUSRosFxSYoDQZ7VVTYfgj/QUCrhYUszXgeGKFMgtCIbpVAtEOyaVhP1O8vydZl8OKqTZMWxS0+z6DeAxVIEWQCEogAZQISiAJFNGYCMpgARjQFCDg2C2doaWprGRwyCQD+/wcBAMAeRTMJAP7/BwEAwB5FOAQA/v8BCooCCYfwSaeCTWgSKXQGLyOOgIfguOC5u1IzRLInN6+Agv77i/vuMACHfAGIkfAEX08AJ7q8vgAM/iPwPLeAWDnBQAg8AVhAnhAAAACSAQAEIAAAAEAhhANDAL0vQQAAgD8AAAAAAAAAAJkrBUMUHl9BAACAPwAAAAAAAAAA/8YEQ+bnU0EAAIA/AAAAAAAAAAC9bAZDbyqJQQAAgD8AAAAAAAAAAOXMC0OAA+9BAACAPwAAAAAAAAAAaVoPQwquK0IAAIA/AAAAAAAAAADlqBFDMEliQgAAgD8AAAAAAAAAAAo/ACg6AhsF7vA6gAo/ACnDoACoAAAAABIAFSABAAAAAAAAACvam69fAAAACqIDIofwXseC2WwVyaRiEyWXyuYzGazWezua0Ohy+cyOVyuOyGISCeUq/rVSok6Ah8nZrh8Ch0gk0ekUwlEciUYgiGwOFw+OyWTzOZy2PxeHwGEQqGQwgv77i/vuMAAAAACHeZxzxSS0PmwOPTrnFC8/J0XfSicv7IuG24FnR/BGZl4eLlAeLw4HPiUtJ8Pvw8U14ZHhYuMb4qzY/J+dzKAIPAFW4J4QAAAAzgEABCAAAEBAyIUQQwAPgEAAAIA/AAAAAAAAAADuvCNDoFKCvgAAgD8AAAAAAAAAADU3P0NQeu+/AACAPwAAAAAAAAAAKLVJQ2TEk0EAAIA/AAAAAAAAAAAKvlRDEtAiQgEAgD8AAAAAAAAAACZUPUOI5HZCAACAPwAAAAAAfQAAAGl7KUOu/IdCAACAPwAAAAAAAAAAIIcMQ1lImkIAAIA/AAAAAAAAAACW5thCfM2RQgAAgD8AAAAAAAAAANTIoEIq1XtCAACAPwAAAAAAAAAACgAUACzTlUPvXtQBCBRQCo+sAAAAABIAFSABAAAAAAAAAKs7oa9fAAAAADs=", 
+    "total_creates_weight": 0.78, 
+    "userFarm": "Dummy Farm", 
+    "loading_id": 0
+}

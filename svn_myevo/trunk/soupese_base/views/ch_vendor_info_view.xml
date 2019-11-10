@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>  
+    	
+<!--	    <record model="ir.ui.menu" id="base.menu_procurement_management_supplier_name">-->
+<!--	      <field name="name">Farm</field>-->
+<!--	    </record>-->
+		
+        <!-- Set default filter of contacts-->
+		<record id="mail.action_contacts" model="ir.actions.act_window">
+			<field name="name">Contacts</field>
+			<field name="domain">['|',('customer','=',True),('supplier','=',True)]</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">res.partner</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="base.view_res_partner_filter"/>
+		</record>
+
+        <record model="ir.ui.view" id="res_partner_tree_view_ext">
+            <field name="name">res.partner.tree.ext</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='email']" position="after">
+                    <field name="linked_to"/>
+                </xpath>
+                <xpath expr="//field[@name='phone']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="res_partner_vendor">
+        	<field name="name">res.partner.vendor</field>
+        	<field name="model">res.partner</field>
+        	<field name="inherit_id" ref="base.view_partner_form"/>
+        	<field name="arch" type="xml">
+                <!-- <xpath expr="//group[1]" position="before">
+                    <group>
+                        <group>
+                            <field name="linked_to" attrs="{'invisible':[('is_an_owner','=',True)]}" widget="selection"/>
+                        </group>
+                    </group>
+                </xpath> -->
+                <xpath expr="//field[@name='website']" position="after">
+					<field name="information_of_gst"/>
+					<field name="last_delivery"/>
+					<field name="branch"/>
+					
+					<field name="crate_cover_weight" attrs="{'invisible':[('is_an_owner','=',False)]}"/>
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page[@name='sales_purchases']" position="after">
+                	<page name="farm_purchases" string="Farm" attrs="{'invisible':[('is_an_owner','=',False)]}">
+                		<field name="owner_ids" widget="many2many" domain ="[('supplier','=',True)]">
+                			<tree string="Owner" create="false" delete="false">
+                				<field name="name" />
+                			</tree>
+                		</field>
+                	</page>					
+                	<page name="scale_purchases" string="Scale" attrs="{'invisible':[('is_an_owner','=',True)]}">
+	                     <field name="scales" widget="many2many">
+	                     	<tree string="Scale">
+			                    <field name="name"/>
+			                </tree>
+	                     </field>
+                 	</page>
+                 	<page name="lorry_purchases" string="Lorry" attrs="{'invisible':[('is_an_owner','=',False)]}">
+	                     <field name="lorry_ids" widget="many2many">
+	                     	<tree string="Lorry">
+			                    <field name="name"/>
+			                </tree>
+	                     </field>
+                 	</page>
+                </xpath> 
+                <xpath expr="//field[@name='phone']" position="replace">
+                    <field name="is_an_farm" string="Is a Farm"/>
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page[3]/group/group[2]/field[@name='supplier']" position="after">
+                    <field name="is_an_owner" groups="base.group_erp_manager"/>
+                	<field name="is_an_owner_dummy" groups="soupese_base.po_f_access_data_manager"/>
+                </xpath>
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <field name="header_name" attrs="{'invisible': ['|', ('is_an_owner', '=', False),('header_do_report','=',False)]}"/>
+					<field name="header_do_report" filename="header_name" attrs="{'invisible': ['|', ('is_an_owner', '=', False), ('header_do_report','!=',False)]}"/>
+                    <field name="mobile_header_name" attrs="{'invisible': ['|', ('is_an_owner', '=', False),('mobile_header_do_report','=',False)]}"/>
+                    <field name="mobile_header_do_report" filename="mobile_header_name" attrs="{'invisible': ['|', ('is_an_owner', '=', False), ('mobile_header_do_report','!=',False)]}"/>
+                    <field name="xaml_template" attrs="{'invisible': [('is_an_owner', '=', False)]}"/>
+                </xpath>
+
+                <xpath expr="//field[@name='ref']" position="after">
+                    <field name="profile_min_crate" attrs="{'invisible':[('is_an_farm','=',False)]}"/>
+                    <field name="profile_max_crate" attrs="{'invisible':[('is_an_farm','=',False)]}"/>
+                    <field name="linked_to" attrs="{'invisible':['|', ('is_an_owner','=',True),('is_an_farm','=',False)]}" widget="selection"/>
+                </xpath>
+        	</field>
+   		</record>
+
+        <record model="ir.ui.view" id="res_partner_farm">
+            <field name="name">res.partner.farm</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="soupese_base.res_partner_vendor"/>
+            <field name="groups_id" eval="[(6, 0, [ref('soupese_base.po_f_access_user')])]"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='is_an_farm']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='ref']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='profile_min_crate']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='profile_max_crate']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='linked_to']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- <record id="res_partner_vendor_readonly_link_owner" model="ir.ui.view">
+            <field name="name">res.partner.vendor.readonly.link.owner</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="res_partner_vendor"/>
+            <field name="groups_id" eval="[(6, 0, [ref('po_f_access_data_manager') ])]"/>
+            <field name="arch" type="xml">
+                <field name='linked_to' position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </field>
+            </field>
+        </record> -->
+
+        <!-- <record id="res_partner_vendor_readonly_scale" model="ir.ui.view">
+            <field name="name">res.partner.vendor.readonly.scale</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="res_partner_vendor"/>
+            <field name="groups_id" eval="[(6, 0, [ref('po_f_access_data_manager') ])]"/>
+            <field name="arch" type="xml">
+                <field name='scales' position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </field>
+            </field>
+        </record> -->
+
+   		<record id="purchase_scale" model="ir.actions.act_window">
+            <field name="name">Scale</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">measure.scale</field>
+            <field name="view_type">form</field>
+        	<field name="view_mode">tree,form</field>
+        	<field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create scale. 
+              </p>
+            </field>
+        </record>
+        
+        
+       <menuitem 
+       		id="base.menu_Scale"
+       		name="Scale" 
+       		parent="purchase.menu_procurement_management"
+            action="purchase_scale" 
+        	groups= "soupese_base.po_f_access_data_manager,base.group_erp_manager"
+            sequence="16"
+       />
+        
+        
+
+       <record id="purchase_order_line_tree" model="ir.ui.view">
+            <field name="name">measure.scale.tree</field>
+            <field name="model">measure.scale</field>
+            <field name="arch" type="xml">
+                <tree string="Confirmation Order">
+                    <field name="name"/>
+                    <field name="scale" string="Farm"/>
+                	<field name="installation"/>
+                	<field name="last_sampling"/>
+                    <field name="last_sync"/>
+                	<field name="Comm_id"/>
+                	<field name="nickname"/>
+                	<field name="brand"/>
+                	<field name="scale_model"/>
+                	<field name="display_model"/>
+                    <field name="display_fw_version"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="purchase_order_line_form2" model="ir.ui.view">
+            <field name="name">measure.scale.form</field>
+            <field name="model">measure.scale</field>
+            <field name="arch" type="xml">
+                <form string="Confirmation Order">
+                    <sheet>
+                        <h1>
+                        </h1>
+                        <h2></h2>
+                        <group>
+                            <group>
+                                <field name="name" required="1"/>
+                                <field name="scale" string="Farm" required="1"/>
+			                	<field name="installation" required="1"/>
+			                	<field name="last_sampling" required="1"/>
+                                <field name="last_sync" readonly="1"/>
+			                	<field name="Comm_id" required="1"/>
+			                	<field name="nickname" required="1"/>
+			                	<field name="brand" required="1"/>
+			                	<field name="scale_model" required="1"/>
+			                	<field name="display_model" required="1"/>
+			                	<field name="display_fw_version" required="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="purchase_order_line_form2_readonly">
+            <field name="name">measure.scale.form.readonly.dm</field>
+            <field name="model">measure.scale</field>
+            <field name="inherit_id" ref="purchase_order_line_form2"/>
+            <field name="groups_id" eval="[(6, 0, [ref('soupese_base.po_f_access_data_manager')])]"/>
+            <field name="arch" type="xml">
+                <field name="name" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </field>
+                <field name="installation" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </field>
+                <field name="last_sampling" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </field>
+                <field name="Comm_id" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </field>
+                <field name="nickname" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </field>
+                <field name="brand" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </field>
+                <field name="scale_model" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </field>
+                <field name="display_model" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </field>
+                <field name="display_fw_version" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </field>
+            </field>
+        </record>
+
+		<!--
+      	<record id="purchase_owner_kanban" model="ir.ui.view">
+            <field name="name">purchase.owner.kanban</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+				<search>
+                    <field name="name"/>                  
+                    <filter name="owner" string="Is an Owner"
+                            domain="[('is_an_owner', '=', True)]"/>                
+                </search>
+            </field>
+        </record>
+        
+       	<record id="purchase_farm_kanban" model="ir.ui.view">
+            <field name="name">purchase.farm.kanban</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+				<search>
+                    <field name="name"/>                  
+                    <filter name="farm" string="Is a Vendor"
+                            domain="[('supplier','=',True), ('customer','=',False)]"/>                
+                </search>
+            </field>
+        </record>
+        -->
+		<record id="purchase_owner" model="ir.actions.act_window">
+            <field name="name">Owner</field>
+            <field name="domain">[('is_an_owner', '=', True)]</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+        	<field name="view_mode">kanban,tree,form</field>
+<!--            <field name="context" eval="{'search_default_owner': 1}"/>-->
+        	<field name="help" type="html">
+            	<p class="oe_view_nocontent_create">
+                	Click to create Owner. 
+              	</p>              		
+            </field>
+        </record>
+
+        <record id="view_soupese_res_partner_filter" model="ir.ui.view">
+            <field name="name">view.soupese.res.partner.filter</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <search string="Search Farm / Vendor">
+                   <filter string="Farm" name="is_an_farm" domain="[('is_an_farm','=',True)]"/>
+                   <filter string="Vendor" name="supplier" domain="[('supplier','=',True)]"/>
+               </search>
+            </field>
+        </record>
+
+		<record id="purchase_farm" model="ir.actions.act_window">
+            <field name="name">Farm</field>
+            <field name="domain">['|','|',('customer','=',True),('supplier','=',True),('is_an_farm','=',True)]</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="search_view_id" ref="view_soupese_res_partner_filter"/>
+            <field name="context" eval="{'search_default_is_an_farm': 1}"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to create Farm. 
+                </p>                    
+            </field>
+        </record>
+
+
+        <!-- to be deleted as duplicate -->
+        <!-- <record id="purchase_farm_data_manager" model="ir.actions.act_window">
+            <field name="name">Farm</field>
+            <field name="domain">[('is_an_owner', '=', False),'|',('customer','=',True),('supplier','=',True)]</field>
+            <field name="domain">['|','|',('customer','=',True),('supplier','=',True),('is_an_farm','=',True)]</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+        	<field name="view_mode">tree,kanban,form</field>
+            <field name="context" eval="{'search_default_is_an_farm': 1}"/>
+        	<field name="help" type="html">
+            	<p class="oe_view_nocontent_create">
+                	Click to create Farm. 
+              	</p>              		
+            </field>
+        </record> -->
+               
+       	<menuitem 
+            id="base.menu_procurement_management_supplier_name"
+            name="Farm / Vendors" 
+            parent="purchase.menu_procurement_management"
+            action="purchase_farm" 
+            groups= "soupese_base.po_f_access_data_manager,base.group_erp_manager"
+            sequence="15"
+        /> 
+
+        <!-- <record model="ir.ui.menu" id="base.menu_procurement_management_supplier_name">
+            <field name="groups_id" eval="[(3, ref('soupese_base.po_f_access_data_manager'))]"/>
+        </record> -->
+
+        <!-- to be deleted as duplicate -->
+        <!-- <menuitem 
+       		id="base.menu_procurement_management_supplier_name_dm"
+       		name="Farm / Vendors" 
+       		parent="purchase.menu_procurement_management"
+            action="purchase_farm" 
+        	groups= "soupese_base.po_f_access_data_manager"
+            sequence="15"
+       	/>  -->
+
+		<menuitem
+		 	id="base.menu_Owner"
+		 	name="Owner"
+		 	parent="purchase.menu_procurement_management"
+			action="purchase_owner"	
+			groups= "base.group_erp_manager"
+		 	sequence="14"
+		/>   
+
+		<!--
+		<record model="ir.ui.view" id="res_partner_fields_group">
+		    <field name="name">res.partner.fields.group</field>
+		    <field name="model">res.partner</field>
+		    <field name="inherit_id" ref="base.view_partner_form"/>
+		    <field name="groups_id" eval="[(6, 0, [ref('soupese_base.po_f_access_data_manager')])]"/>
+		    <field name="arch" type="xml">
+                <xpath expr="//page[3]/group/group[2]/field[@name='supplier']" position="after">
+		            <field name="is_an_owner" attrs="{'readonly':True}"/>
+		        </xpath>
+		    </field>
+		</record>  
+
+		<record model="ir.ui.view" id="res_partner_fields_group">
+		    <field name="name">res.partner.fields.group</field>
+		    <field name="model">res.partner</field>
+		    <field name="inherit_id" ref="base.view_partner_form"/>
+		    <field name="groups_id" eval="[(6, 0, [ref('base.group_erp_manager')])]"/>
+		    <field name="arch" type="xml">
+                <xpath expr="//page[3]/group/group[2]/field[@name='is_an_owner']" position="replace">
+		            <field name="is_an_owner" attrs="{'readonly':False}"/>
+		        </xpath>
+		    </field>
+		</record>		-->
+		    
+    </data>  
+</openerp>

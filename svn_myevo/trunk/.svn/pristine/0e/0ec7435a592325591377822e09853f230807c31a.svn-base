@@ -1,0 +1,288 @@
+from openerp import models, fields,api
+# import xml.etree.ElementTree as ET
+from lxml import etree as ET
+import base64
+from datetime import datetime, timedelta
+import sys
+
+
+
+# class filesWizard(models.TransientModel):
+#     _name = 'files.wizard'
+
+#     files_id = fields.One2many('soupese.common_wizard', 'file_id', string='text1')
+
+
+
+class common_wizard(models.TransientModel):
+    _name = 'soupese.common_wizard'
+
+    text1 = fields.Char(string='text1')
+    file_name = fields.Char(string='File Name', size=64)
+    file =  fields.Binary('File')
+    # file_id = fields.Many2one('files.wizard', string="text2", ondelete='restrict', copy=False)
+
+
+    def _addField(self, fields, attrname=None, fieldtype=None, SUBTYPE=None, WIDTH=None, required=None, DECIMALS=None):
+        field = ET.SubElement(fields, "FIELD")
+        if attrname is not None:
+            field.set("attrname", attrname)
+        if fieldtype is not None:
+            field.set("fieldtype", fieldtype)
+        if required is not None:
+            field.set("required", required)
+        if DECIMALS is not None:
+            field.set("DECIMALS", DECIMALS)
+        if SUBTYPE is not None:
+            field.set("SUBTYPE", SUBTYPE)
+        if WIDTH is not None:
+            field.set("WIDTH", WIDTH)
+        return field
+
+    @api.multi
+    def confirm_export(self):
+        filename = "PH_PO"
+        po_code = ''
+        supplier_code = ''
+        recs = self.env['purchase.order'].search([('id', 'in', self._context.get('active_ids'))])
+
+        datapacket = ET.Element("DATAPACKET", Version="2.0")
+        metadata = ET.SubElement(datapacket, "METADATA")
+        fields = ET.SubElement(metadata, "FIELDS")
+        self._addField(fields, attrname="DOCKEY", fieldtype="i4", required="true")
+        self._addField(fields, attrname="DOCNO", fieldtype="string", required="true", WIDTH="20")
+        self._addField(fields, attrname="DOCNOEX", fieldtype="string", WIDTH="20")
+        self._addField(fields, attrname="DOCDATE", fieldtype="date")
+        self._addField(fields, attrname="POSTDATE", fieldtype="date")
+        self._addField(fields, attrname="TAXDATE", fieldtype="date")
+        self._addField(fields, attrname="CODE", fieldtype="string", WIDTH="10")
+        self._addField(fields, attrname="COMPANYNAME", fieldtype="string", WIDTH="100")
+        self._addField(fields, attrname="ADDRESS1", fieldtype="string", WIDTH="60")
+        self._addField(fields, attrname="ADDRESS2", fieldtype="string", WIDTH="60")
+        self._addField(fields, attrname="ADDRESS3", fieldtype="string", WIDTH="60")
+        self._addField(fields, attrname="ADDRESS4", fieldtype="string", WIDTH="60")
+        self._addField(fields, attrname="PHONE1", fieldtype="string", WIDTH="30")
+        self._addField(fields, attrname="FAX1", fieldtype="string", WIDTH="30")
+        self._addField(fields, attrname="ATTENTION", fieldtype="string", WIDTH="70")
+        self._addField(fields, attrname="AREA", fieldtype="string", WIDTH="10")
+        self._addField(fields, attrname="AGENT", fieldtype="string", WIDTH="10")
+        self._addField(fields, attrname="PROJECT", fieldtype="string", WIDTH="20")
+        self._addField(fields, attrname="TERMS", fieldtype="string", WIDTH="10")
+        self._addField(fields, attrname="CURRENCYCODE", fieldtype="string", WIDTH="6")
+        self._addField(fields, attrname="CURRENCYRATE", fieldtype="fixedFMT", DECIMALS="10", WIDTH="19")
+        self._addField(fields, attrname="SHIPPER", fieldtype="string", required="true", WIDTH="30")
+        self._addField(fields, attrname="DESCRIPTION", fieldtype="string", WIDTH="200")
+        self._addField(fields, attrname="CANCELLED", fieldtype="string", WIDTH="1")
+        self._addField(fields, attrname="DOCAMT", fieldtype="fixedFMT", DECIMALS="2", WIDTH="19")
+        self._addField(fields, attrname="LOCALDOCAMT", fieldtype="fixedFMT", DECIMALS="2", WIDTH="19")
+        self._addField(fields, attrname="D_DOCNO", fieldtype="string", WIDTH="20")
+        self._addField(fields, attrname="D_PAYMENTMETHOD", fieldtype="string", WIDTH="10")
+        self._addField(fields, attrname="D_CHEQUENUMBER", fieldtype="string", WIDTH="20")
+        self._addField(fields, attrname="D_PAYMENTPROJECT", fieldtype="string", WIDTH="20")
+        self._addField(fields, attrname="D_BANKCHARGE", fieldtype="fixedFMT", DECIMALS="2", WIDTH="19")
+        self._addField(fields, attrname="D_AMOUNT", fieldtype="fixedFMT", DECIMALS="2", WIDTH="19")
+        self._addField(fields, attrname="VALIDITY", fieldtype="string", WIDTH="200")
+        self._addField(fields, attrname="DELIVERYTERM", fieldtype="string", WIDTH="200")
+        self._addField(fields, attrname="CC", fieldtype="string", WIDTH="200")
+        self._addField(fields, attrname="DOCREF1", fieldtype="string", WIDTH="25")
+        self._addField(fields, attrname="DOCREF2", fieldtype="string", WIDTH="25")
+        self._addField(fields, attrname="DOCREF3", fieldtype="string", WIDTH="25")
+        self._addField(fields, attrname="DOCREF4", fieldtype="string", WIDTH="25")
+        self._addField(fields, attrname="BRANCHNAME", fieldtype="string", WIDTH="100")
+        self._addField(fields, attrname="DADDRESS1", fieldtype="string", WIDTH="60")
+        self._addField(fields, attrname="DADDRESS2", fieldtype="string", WIDTH="60")
+        self._addField(fields, attrname="DADDRESS3", fieldtype="string", WIDTH="60")
+        self._addField(fields, attrname="DADDRESS4", fieldtype="string", WIDTH="60")
+        self._addField(fields, attrname="DATTENTION", fieldtype="string", WIDTH="70")
+        self._addField(fields, attrname="DPHONE1", fieldtype="string", WIDTH="30")
+        self._addField(fields, attrname="DFAX1", fieldtype="string", WIDTH="30")
+        self._addField(fields, attrname="ATTACHMENTS", fieldtype="bin.hex", SUBTYPE="Binary", WIDTH="8")
+        self._addField(fields, attrname="NOTE", fieldtype="bin.hex", SUBTYPE="Binary", WIDTH="8")
+        self._addField(fields, attrname="TRANSFERABLE", fieldtype="string", WIDTH="1")
+        self._addField(fields, attrname="UPDATECOUNT", fieldtype="i4")
+        self._addField(fields, attrname="PRINTCOUNT", fieldtype="i4")
+        self._addField(fields, attrname="DOCNOSETKEY", fieldtype="i8", required="true")
+        self._addField(fields, attrname="NEXTDOCNO", fieldtype="string", WIDTH="20")
+        self._addField(fields, attrname="CHANGED", fieldtype="string", required="true", WIDTH="1")
+
+        sdsDocDetail = self._addField(fields, attrname="sdsDocDetail", fieldtype="nested")
+        sdsDocDetail_fields = ET.SubElement(sdsDocDetail, "FIELDS")
+        self._addField(sdsDocDetail_fields, attrname="DTLKEY", fieldtype="i4", required="true")
+        self._addField(sdsDocDetail_fields, attrname="DOCKEY", fieldtype="i4", required="true")
+        self._addField(sdsDocDetail_fields, attrname="SEQ", fieldtype="i4")
+        self._addField(sdsDocDetail_fields, attrname="STYLEID", fieldtype="string", WIDTH="5")
+        self._addField(sdsDocDetail_fields, attrname="NUMBER", fieldtype="string", WIDTH="5")
+        self._addField(sdsDocDetail_fields, attrname="ITEMCODE", fieldtype="string", WIDTH="30")
+        self._addField(sdsDocDetail_fields, attrname="LOCATION", fieldtype="string", WIDTH="20")
+        self._addField(sdsDocDetail_fields, attrname="BATCH", fieldtype="string", WIDTH="30")
+        self._addField(sdsDocDetail_fields, attrname="PROJECT", fieldtype="string", WIDTH="20")
+        self._addField(sdsDocDetail_fields, attrname="DESCRIPTION", fieldtype="string", WIDTH="200")
+        self._addField(sdsDocDetail_fields, attrname="DESCRIPTION2", fieldtype="string", WIDTH="200")
+        self._addField(sdsDocDetail_fields, attrname="DESCRIPTION3", fieldtype="bin.hex", SUBTYPE="Binary", WIDTH="8")
+        self._addField(sdsDocDetail_fields, attrname="PERMITNO", fieldtype="string", WIDTH="20")
+        self._addField(sdsDocDetail_fields, attrname="QTY", fieldtype="fixedFMT", DECIMALS="4", WIDTH="19")
+        self._addField(sdsDocDetail_fields, attrname="UOM", fieldtype="string", WIDTH="10")
+        self._addField(sdsDocDetail_fields, attrname="RATE", fieldtype="fixedFMT", DECIMALS="4", WIDTH="19")
+        self._addField(sdsDocDetail_fields, attrname="SQTY", fieldtype="fixedFMT", DECIMALS="4", WIDTH="19")
+        self._addField(sdsDocDetail_fields, attrname="SUOMQTY", fieldtype="fixedFMT", DECIMALS="4", WIDTH="19")
+        self._addField(sdsDocDetail_fields, attrname="OFFSETQTY", fieldtype="fixedFMT", DECIMALS="4", WIDTH="19")
+        self._addField(sdsDocDetail_fields, attrname="UNITPRICE", fieldtype="fixedFMT", DECIMALS="8", WIDTH="19")
+        self._addField(sdsDocDetail_fields, attrname="DELIVERYDATE", fieldtype="date")
+        self._addField(sdsDocDetail_fields, attrname="DISC", fieldtype="string", WIDTH="20")
+        self._addField(sdsDocDetail_fields, attrname="TAX", fieldtype="string", WIDTH="10")
+        self._addField(sdsDocDetail_fields, attrname="TAXRATE", fieldtype="string", WIDTH="20")
+        self._addField(sdsDocDetail_fields, attrname="TAXAMT", fieldtype="fixedFMT", DECIMALS="2", WIDTH="19")
+        self._addField(sdsDocDetail_fields, attrname="LOCALTAXAMT", fieldtype="fixedFMT", DECIMALS="2", WIDTH="19")
+        self._addField(sdsDocDetail_fields, attrname="TAXINCLUSIVE", fieldtype="i2")
+        self._addField(sdsDocDetail_fields, attrname="AMOUNT", fieldtype="fixedFMT", DECIMALS="2", WIDTH="19")
+        self._addField(sdsDocDetail_fields, attrname="LOCALAMOUNT", fieldtype="fixedFMT", DECIMALS="2", WIDTH="19")
+        self._addField(sdsDocDetail_fields, attrname="PRINTABLE", fieldtype="string", WIDTH="1")
+        self._addField(sdsDocDetail_fields, attrname="FROMDOCTYPE", fieldtype="string", WIDTH="2")
+        self._addField(sdsDocDetail_fields, attrname="FROMDOCKEY", fieldtype="i4")
+        self._addField(sdsDocDetail_fields, attrname="FROMDTLKEY", fieldtype="i4")
+        self._addField(sdsDocDetail_fields, attrname="TRANSFERABLE", fieldtype="string", WIDTH="1")
+        self._addField(sdsDocDetail_fields, attrname="REMARK1", fieldtype="string", WIDTH="200")
+        self._addField(sdsDocDetail_fields, attrname="REMARK2", fieldtype="string", WIDTH="200")
+        self._addField(sdsDocDetail_fields, attrname="CHANGED", fieldtype="string", required="true", WIDTH="1")
+
+
+        params = ET.SubElement(metadata, "PARAMS")
+        params.set("MD_SEMANTICS", "2")
+        params.set("LCID", "0")
+        param = ET.SubElement(params, "PARAM")
+        param.set("Name", "MD_FIELDLINKS")
+        param.set("Value", "56 1 2")
+        param.set("Type", "IntArray")
+
+        
+        rowdata = ET.SubElement(datapacket, "ROWDATA")
+        
+        for rec in recs:
+            po_code = rec['name']
+            supplier_code = str(rec['partner_id'].name or '')
+            parsedate = (datetime.strptime(rec['date_order'], "%Y-%m-%d %H:%M:%S")).strftime("%Y%m%d") 
+            row = ET.SubElement(rowdata, "ROW")
+            row.set("DOCKEY", "")
+            row.set("DOCNO", rec['name'])
+            row.set("DOCNOEX", "")
+            row.set("DOCDATE", parsedate)
+            row.set("POSTDATE", parsedate)
+            row.set("TAXDATE", "")
+            row.set("CODE", str(rec['id']))
+            row.set("COMPANYNAME", str(rec['partner_id'].name or ''))
+            row.set("ADDRESS1", str(rec['partner_id'].street or ''))
+            row.set("ADDRESS2", str(rec['partner_id'].city or ''))
+            row.set("ADDRESS3", "")
+            row.set("ADDRESS4", "")
+            row.set("PHONE1", "")
+            row.set("FAX1", "")
+            row.set("ATTENTION", "----")
+            row.set("AREA", "----")
+            row.set("AGENT", "")
+            row.set("PROJECT", "----")
+            row.set("TERMS", "")
+            row.set("CURRENCYCODE", "----")
+            row.set("CURRENCYRATE", "")
+            row.set("SHIPPER", "----")
+            row.set("DESCRIPTION", "")
+            row.set("CANCELLED", "F")
+            row.set("DOCAMT", "")
+            row.set("LOCALDOCAMT", "")
+            row.set("D_DOCNO", "")
+            row.set("D_PAYMENTMETHOD", "")
+            row.set("D_CHEQUENUMBER", "")
+            row.set("D_PAYMENTPROJECT", "")
+            row.set("D_BANKCHARGE", "")
+            row.set("D_AMOUNT", "")
+            row.set("VALIDITY", "")
+            row.set("DELIVERYTERM", "")
+            row.set("CC", "")
+            row.set("DOCREF1", str(rec['pda_do_id']))
+            row.set("DOCREF2", "")
+            row.set("DOCREF3", "")
+            row.set("DOCREF4", "")
+            row.set("BRANCHNAME", "")
+            row.set("DADDRESS1", "")
+            row.set("DADDRESS2", "")
+            row.set("DADDRESS3", "")
+            row.set("DADDRESS4", "")
+            row.set("DATTENTION", "")
+            row.set("DPHONE1", "")
+            row.set("DFAX1", "")
+            row.set("ATTACHMENTS", "")
+            row.set("NOTE", "")
+            row.set("TRANSFERABLE", "")
+            row.set("UPDATECOUNT", "")
+            row.set("PRINTCOUNT", "")
+            row.set("DOCNOSETKEY", "")
+            row.set("NEXTDOCNO", "")
+            row.set("CHANGED", "")
+
+
+            sdsdocdetail = ET.SubElement(row, "sdsDocDetail")
+            lines = self.env['purchase.order.line'].search([('order_id', '=', rec['id'])])
+            seq=1
+            for line in lines:
+                rows = ET.SubElement(sdsdocdetail, "ROWsdsDocDetail")
+                rows.set("DTLKEY", "")
+                rows.set("DOCKEY", "")
+                rows.set("SEQ", str(seq))
+                rows.set("STYLEID", "")
+                rows.set("NUMBER", "")
+                rows.set("ITEMCODE", str(line['product_id'].id))
+                rows.set("LOCATION", "----")
+                rows.set("BATCH", "")
+                rows.set("PROJECT", "----")
+                rows.set("DESCRIPTION", str(line['product_id'].name_template))
+                rows.set("DESCRIPTION2", "")
+                rows.set("DESCRIPTION3", "")
+                rows.set("PERMITNO", "")
+                rows.set("QTY", str(line['product_qty']))
+                rows.set("UOM", str(line['product_uom'].name))
+                rows.set("RATE", "")
+                rows.set("SQTY", "")
+                rows.set("SUOMQTY", "")
+                rows.set("OFFSETQTY", "")
+                rows.set("UNITPRICE", str(line['price_unit'] or '0.00'))
+                rows.set("DELIVERYDATE", "")
+                rows.set("DISC", "")
+                rows.set("TAX", "")
+                rows.set("TAXRATE", "")
+                rows.set("TAXAMT", "0.00")
+                rows.set("LOCALTAXAMT", "0.00")
+                rows.set("TAXINCLUSIVE", "0")
+                rows.set("AMOUNT", "{0:,.2f}".format(round(line['price_unit'],2)))
+                rows.set("LOCALAMOUNT", "{0:,.2f}".format(round(line['price_unit'],2)))
+                rows.set("PRINTABLE", "T")
+                rows.set("FROMDOCTYPE", "")
+                rows.set("FROMDOCKEY", "")
+                rows.set("FROMDTLKEY", "")
+                rows.set("TRANSFERABLE", "T")
+                rows.set("REMARK1", "")
+                rows.set("REMARK2", "")
+                rows.set("CHANGED", "F")
+                seq+=1
+
+        #Get xml string with declaration
+        # datas = ET.tostring(datapacket, encoding='UTF-8', method='xml')
+        datas = ET.tostring(datapacket)
+
+        # print etree.tostring(root)
+        soupese = self.env['soupese.common_wizard']
+        wizard_rec = soupese.create({'file_name': filename+'.'+po_code+'.'+supplier_code+'.xml', 
+                                     'file': base64.encodestring(datas)})
+
+        view_id = self.env['ir.model.data'].get_object_reference('soupese_base', 'post_export_view')[1]
+        return {
+            'name':'Export to XML',
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'soupese.common_wizard',
+            'view_id': view_id,
+            'res_id': wizard_rec.id,
+            'target': 'new',
+            'context': {},
+            }
+
+

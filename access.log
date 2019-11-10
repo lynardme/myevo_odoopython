@@ -1,0 +1,66 @@
+https://myevo-repo.seamcloud.com
+
+General SVN login :  dev / myevodevaccess
+Your login : lynard.salingujay / lynard123123 
+
+
+start / stop odoo
+/etc/init.d/odoo stop
+/etc/init.d/odoo start
+
+
+password
+my3v000d00t3st
+
+/etc/odoo-server.conf
+
+admin_bo_myevo@soupese.com
+
+
+ssh -p 33188 portcity@rdp.seamcloud.com
+
+
+https://demomy.soupese.com/
+https://skyguyver@bitbucket.org/upworkdevelopers/myevo_odoo_addons.git
+
+database access
+ssh -L 5433:127.0.0.1:5432 -p 33188 portcity@rdp.seamcloud.com
+
+new login/password
+admin_bo_myevo@soupese.com
+admin123!!!
+
+
+
+demomy_admin@soupese.com
+123456
+
+demomy_admin@soupese.com
+123456
+
+demomy_purchase@soupese.com
+demomy_api@soupese.com
+
+
+
+
+ITEM_CODE
+DESCRIPTION
+QTY
+UOM
+UPRICE
+SUB_TOTAL
+TAX
+TAX_RATE
+TAX_INCLUSIVE
+TAX_AMOUNT
+SUB_TOTAL_TAX
+ADDRESS
+PO_NO
+DATE
+AGENT
+TERMS
+REF1
+EXT_NO
+LOCAL_NET_TOTAL
+NET_TOTAL

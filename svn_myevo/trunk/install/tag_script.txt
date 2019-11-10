@@ -1,0 +1,4 @@
+ svn copy https://myevo-repo.seamcloud.com/svn/soupese-odoo/trunk https://myevo-repo.seamcloud.com/svn/soupese-odoo/tags/201904-1.8 -m "Version 1.8 deployment"
+ svn switch https://myevo-repo.seamcloud.com/svn/soupese-odoo/trunk/
+
+
